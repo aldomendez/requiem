@@ -22,7 +22,7 @@ var copyAndReload = function copyAndReload (event) {
        .pipe(livereload());
 }
 
-var copy = function copyAndReload (event) {
+var copy = function copy (event) {
   console.log('Sended to: ',serverPath(event.path));
   gulp.src(event.path)
        .pipe(gulp.dest(DEST + serverPath(event.path)));
@@ -57,7 +57,7 @@ gulp.task('watch', function () {
   });  
   gulp.watch(['index.php','start.php'], function (event) {
   }).on('change', function (event) {
-     copy(event);
+     copyAndReload(event);
   });  
   gulp.watch(['js/**.map'], function (event) {
   }).on('change', function (event) {
