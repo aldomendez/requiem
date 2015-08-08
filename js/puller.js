@@ -1,5 +1,5 @@
 (function() {
-  var callRest, counter, cron, fs, j, k, l, logger, m, n, o, p, rest, running, timeoutTime, writeFile;
+  var callRest, counter, cron, fs, j, k, l, logger, m, n, o, p, rest, running, timeoutTime, updateHourly, writeFile;
 
   rest = require('unirest');
 
@@ -15,12 +15,12 @@
 
   counter = 0;
 
-  callRest = function() {
+  callRest = function(addr) {
     running = true;
-    console.log('Making the question');
-    return rest.get('http://wmatvmlr401/lr4/oee-monitor/index.php/update/target').end(function(response) {
+    console.log('--> Making the question');
+    return rest.get(addr).end(function(response) {
       running = false;
-      console.log('Response getted');
+      console.log('<-- Response getted');
       return writeFile('C:/apps/oee-monitor/cache/response' + ++counter + '.json', JSON.stringify(response));
     });
   };
@@ -39,17 +39,21 @@
     });
   };
 
-  j = cron.scheduleJob('0 30 6  * * *', callRest);
+  updateHourly = function() {
+    return callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly');
+  };
 
-  k = cron.scheduleJob('0 30 10 * * *', callRest);
+  j = cron.scheduleJob('0 30 6  * * *', updateHourly);
 
-  l = cron.scheduleJob('0 30 14 * * *', callRest);
+  k = cron.scheduleJob('0 30 10 * * *', updateHourly);
 
-  m = cron.scheduleJob('0 30 22 * * *', callRest);
+  l = cron.scheduleJob('0 30 14 * * *', updateHourly);
 
-  n = cron.scheduleJob('0 30 2  * * *', callRest);
+  m = cron.scheduleJob('0 30 22 * * *', updateHourly);
 
-  o = cron.scheduleJob('0  0 */1  * * *', callRest);
+  n = cron.scheduleJob('0 30 2  * * *', updateHourly);
+
+  o = cron.scheduleJob('0  */15 *  * * *', updateHourly);
 
   p = cron.scheduleJob('*/5  * *  * * *', logger);
 

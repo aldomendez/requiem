@@ -15,12 +15,12 @@ counter = 0
  	# console.log 'scheduling new timeout'
   # interval = do =>setTimeout(callRest,timeout)
 
-callRest = ->
+callRest = (addr)->
  running = true
- console.log 'Making the question'
- rest.get('http://wmatvmlr401/lr4/oee-monitor/index.php/update/target').end (response)->
+ console.log '--> Making the question'
+ rest.get(addr).end (response)->
   running = false
-  console.log 'Response getted'
+  console.log '<-- Response getted'
   writeFile('C:/apps/oee-monitor/cache/response' + ++counter + '.json', JSON.stringify response)
   # a timeoutTime
 logger = ->
@@ -33,12 +33,15 @@ writeFile = (address, content)->
   else
   	console.log 'File saved'
 
+updateHourly = ()->
+	callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly');
+
 # a timeoutTime
 
-j = cron.scheduleJob '0 30 6  * * *', callRest
-k = cron.scheduleJob '0 30 10 * * *', callRest
-l = cron.scheduleJob '0 30 14 * * *', callRest
-m = cron.scheduleJob '0 30 22 * * *', callRest
-n = cron.scheduleJob '0 30 2  * * *', callRest
-o = cron.scheduleJob '0  0 */1  * * *', callRest
+j = cron.scheduleJob '0 30 6  * * *', updateHourly
+k = cron.scheduleJob '0 30 10 * * *', updateHourly
+l = cron.scheduleJob '0 30 14 * * *', updateHourly
+m = cron.scheduleJob '0 30 22 * * *', updateHourly
+n = cron.scheduleJob '0 30 2  * * *', updateHourly
+o = cron.scheduleJob '0  */15 *  * * *', updateHourly
 p = cron.scheduleJob '*/5  * *  * * *', logger
