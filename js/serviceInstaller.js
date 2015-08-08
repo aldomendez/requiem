@@ -5,8 +5,8 @@
 
   svc = new Service({
     name: 'MonitorPulling',
-    description: 'NodeJs Web Pulling to update monitors',
-    script: 'C:\\apps\\node-win\\puller.js'
+    description: 'NodeJs Web Pulling to update OEE data',
+    script: 'C:\\apps\\oee-monitor\\js\\puller.js'
   });
 
   svc.on('install', function() {

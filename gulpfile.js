@@ -9,13 +9,13 @@ var BASE = __dirname;
 
 function serverPath (path) {
   // Obtiene la direccion a la que se enviaran los datos
-  var rgx = /[a-zA-Z-_~\. ]*$/;
+  var rgx = /[a-zA-Z0-9-_~\. ]*$/;
   path = path.replace(rgx, '');
-  return path.replace(BASE,'');
+  return  path.replace(BASE,'');
 }
 
 var copyAndReload = function copyAndReload (event) {
-  console.log('Sended to: ',serverPath(event.path));
+  // console.log('Sended to: ',serverPath(event.path));
   gulp.src(event.path)
        .pipe(gulp.dest(DEST + serverPath(event.path)))
        .pipe(wait(1200))
