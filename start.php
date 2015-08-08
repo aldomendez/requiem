@@ -7,8 +7,8 @@
   <link rel="stylesheet" type="text/css"  href="../jsLib/SemanticUi/2.0.7/semantic.css">
 </head>
 <body>
-  <div class="ui grid container" id="container">
-    <template id="template">
+  <div class="ui two column grid container" id="container">
+    <!-- <template id="template"> -->
       <div class="one column row">
         <div class="column">
           <div class="ui menu">
@@ -22,14 +22,14 @@
         </div>
       </div>
       <!--Upper group of BU groups-->
-      <div class="two column row">
+      <!-- <div class="two column row"> -->
         <div class="column">
           <h2 class="ui center aligned header">Naranja</h2>
           <table class="ui orange table">
             <tr>
               <td>Deflector</td>
               <td>
-                <div class="ui statistic">
+                <div class="ui red statistic">
                   <div class="value">
                     40%
                   </div>
@@ -39,7 +39,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui yellow statistic">
                   <div class="value">
                     80%
                   </div>
@@ -49,12 +49,12 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui green statistic">
                   <div class="value">
                     99%
                   </div>
                   <div class="label">
-                    Yield
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -87,7 +87,7 @@
                     99%
                   </div>
                   <div class="label">
-                    Yield
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -120,7 +120,7 @@
                     99%
                   </div>
                   <div class="label">
-                    Yield
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -163,7 +163,7 @@
                     99%
                   </div>
                   <div class="label">
-                    Yield
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -196,7 +196,7 @@
                     99%
                   </div>
                   <div class="label">
-                    Yield
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -229,7 +229,7 @@
                     99%
                   </div>
                   <div class="label">
-                    Yield
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -239,10 +239,10 @@
         
         
         </div>
-      </div>
+      <!-- </div> -->
       
       <!--Lower group of BU groups-->
-      <div class="two column row">
+      <!-- <div class="two column row"> -->
         <div class="column">
           
           
@@ -276,7 +276,7 @@
                     99%
                   </div>
                   <div class="label">
-                    Yield
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -309,7 +309,7 @@
                     99%
                   </div>
                   <div class="label">
-                    Yield
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -342,7 +342,7 @@
                     99%
                   </div>
                   <div class="label">
-                    Yield
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -385,7 +385,7 @@
                     99%
                   </div>
                   <div class="label">
-                    Yield
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -418,7 +418,7 @@
                     99%
                   </div>
                   <div class="label">
-                    Yield
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -451,7 +451,7 @@
                     99%
                   </div>
                   <div class="label">
-                    Yield
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -460,11 +460,11 @@
         
         
         </div>
-      </div>
+      <!-- </div> -->
 
 
 
-    </template>
+    <!-- </template> -->
   </div>
   <!-- // <script src="../jsLib/jquery/2.1.3/jquery.js"></script> -->
   <script src="../jsLib/vue/0.12.9/vue.js"></script>

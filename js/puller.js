@@ -7,7 +7,7 @@
 
   running = false;
 
-  timeoutTime = 50000;
+  timeoutTime = 50 * 1000;
 
   a = function(timeout) {
     var interval;
