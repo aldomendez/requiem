@@ -14,7 +14,7 @@ function serverPath (path) {
   return path.replace(BASE,'');
 }
 
-copyAndReload = function copyAndReload (event) {
+var copyAndReload = function copyAndReload (event) {
   console.log('Sended to: ',serverPath(event.path));
   gulp.src(event.path)
        .pipe(gulp.dest(DEST + serverPath(event.path)))
@@ -22,14 +22,14 @@ copyAndReload = function copyAndReload (event) {
        .pipe(livereload());
 }
 
-copy = function copyAndReload (event) {
+var copy = function copyAndReload (event) {
   console.log('Sended to: ',serverPath(event.path));
   gulp.src(event.path)
        .pipe(gulp.dest(DEST + serverPath(event.path)));
 }
 
-compileAndPush = function compileAndPush (event) {
-  path = event.path.replace(BASE,'');
+var compileAndPush = function compileAndPush (event) {
+  var path = event.path.replace(BASE,'');
   path = '.' + path.replace('\\','/');
   console.log(path);
   gulp.src(path)
