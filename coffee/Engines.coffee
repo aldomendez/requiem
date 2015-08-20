@@ -7,17 +7,17 @@ Vue.filter 'perc', (val)->
 Vue.filter 'color', (val)->
 	if 0 < val < .7 then return 'red'
 	if .7 < val < .9 then return 'yellow'
-	if .9 < val <= 1 then return 'green'
+	if .9 < val <= 2 then return 'green'
 
 
 
 url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_Functional.json'
 Vue.http.get url, (data, status, request)->
 	window.urldt = data
-	vm.bu.Naranja['Functional'].avail = average(_.pluck(urldt,'AVAILABILITY'))
-	vm.bu.Naranja['Functional'].perf = average(_.pluck(urldt,'PERFORMANCE'))
-	vm.bu.Naranja['Functional'].yiel = average(_.pluck(urldt,'YIELD'))
-	vm.bu.Naranja['Functional'].oee = average(_.pluck(urldt,'OEE'))
+	vm.bu['Engines']['Functional'].avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['Engines']['Functional'].perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['Engines']['Functional'].yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['Engines']['Functional'].oee = average(_.pluck(urldt,'OEE'))
 
 
 window.vm = new Vue {

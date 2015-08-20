@@ -7,7 +7,7 @@ Vue.filter 'perc', (val)->
 Vue.filter 'color', (val)->
 	if 0 < val < .7 then return 'red'
 	if .7 < val < .9 then return 'yellow'
-	if .9 < val <= 1 then return 'green'
+	if .9 < val <= 2 then return 'green'
 
 
 

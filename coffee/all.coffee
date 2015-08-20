@@ -6,7 +6,7 @@ Vue.filter 'perc', (val)->
 Vue.filter 'color', (val)->
 	if 0 < val < .7 then return 'red'
 	if .7 < val < .9 then return 'yellow'
-	if .9 < val <= 1 then return 'green'
+	if .9 < val <= 2 then return 'green'
 
 
 
@@ -14,18 +14,18 @@ Vue.filter 'color', (val)->
 url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_SiLens_every_x_h.json'
 Vue.http.get url, (data, status, request)->
 	window.urldt = data
-	vm.bu.Amarillo.SiLens.avail = average(_.pluck(urldt,'AVAILABILITY'))
-	vm.bu.Amarillo.SiLens.perf = average(_.pluck(urldt,'PERFORMANCE'))
-	vm.bu.Amarillo.SiLens.yiel = average(_.pluck(urldt,'YIELD'))
-	vm.bu.Amarillo.SiLens.oee = average(_.pluck(urldt,'OEE'))
+	vm.bu['LR4-4x25'].SiLens.avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['LR4-4x25'].SiLens.perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['LR4-4x25'].SiLens.yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['LR4-4x25'].SiLens.oee = average(_.pluck(urldt,'OEE'))
 
 url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_Functional.json'
 Vue.http.get url, (data, status, request)->
 	window.urldt = data
-	vm.bu.Naranja['Functional'].avail = average(_.pluck(urldt,'AVAILABILITY'))
-	vm.bu.Naranja['Functional'].perf = average(_.pluck(urldt,'PERFORMANCE'))
-	vm.bu.Naranja['Functional'].yiel = average(_.pluck(urldt,'YIELD'))
-	vm.bu.Naranja['Functional'].oee = average(_.pluck(urldt,'OEE'))
+	vm.bu['Engines']['Functional'].avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['Engines']['Functional'].perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['Engines']['Functional'].yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['Engines']['Functional'].oee = average(_.pluck(urldt,'OEE'))
 
 # url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-OSA_LIV_every_x_h.json'
 # Vue.http.get url, (data, status, request)->

@@ -28,7 +28,7 @@
     if ((.7 < val && val < .9)) {
       return 'yellow';
     }
-    if ((.9 < val && val <= 1)) {
+    if ((.9 < val && val <= 2)) {
       return 'green';
     }
   });

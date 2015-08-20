@@ -26,8 +26,8 @@
           </div>
         </div>
       </div>
-        <div class="column" v-repeat="bu">
           <!-- <pre>{{$data|json}}</pre> -->
+        <div class="column" v-repeat="bu">
           <h1 class="ui center aligned header"><a href="http://wmatvmlr401/lr4/oee-monitor/index.php/bu/{{$key}}">{{$key}}</a></h1>
           <table class="ui yellow table">
             <tr v-repeat="$data">

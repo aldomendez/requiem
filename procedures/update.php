@@ -4,8 +4,7 @@
 		$files = array(
 			'oee_query_SiLens_every_x_h',
 			'oee_query_LR4-OSA_LIV_every_x_h',
-			'oee_query_Engines_Functional',
-			'oee_query_LR4-OSA_LIV_every_x_h'
+			'oee_query_Engines_Functional'
 		);
 		
 		$inicio = strtotime('-4 hours');
@@ -19,6 +18,8 @@
 			$DB->bind_vars(':inicio',date('Y-m-d H:i', $inicio));
 			$DB->bind_vars(':final',date('Y-m-d H:i', $final));
 			$DB->exec();
+			// I save the copy of the query
+			// Later I want to have a copy of what it is doing 
 			file_put_contents("sql/preCompiled/".$value.".sql", $DB->query);
 			$json = $DB->json();
 

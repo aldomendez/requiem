@@ -28,7 +28,7 @@
     if ((.7 < val && val < .9)) {
       return 'yellow';
     }
-    if ((.9 < val && val <= 1)) {
+    if ((.9 < val && val <= 2)) {
       return 'green';
     }
   });
@@ -37,10 +37,10 @@
 
   Vue.http.get(url, function(data, status, request) {
     window.urldt = data;
-    vm.bu['LR4 - 4x25'].SiLens.avail = average(_.pluck(urldt, 'AVAILABILITY'));
-    vm.bu['LR4 - 4x25'].SiLens.perf = average(_.pluck(urldt, 'PERFORMANCE'));
-    vm.bu['LR4 - 4x25'].SiLens.yiel = average(_.pluck(urldt, 'YIELD'));
-    return vm.bu['LR4 - 4x25'].SiLens.oee = average(_.pluck(urldt, 'OEE'));
+    vm.bu['LR4-4x25'].SiLens.avail = average(_.pluck(urldt, 'AVAILABILITY'));
+    vm.bu['LR4-4x25'].SiLens.perf = average(_.pluck(urldt, 'PERFORMANCE'));
+    vm.bu['LR4-4x25'].SiLens.yiel = average(_.pluck(urldt, 'YIELD'));
+    return vm.bu['LR4-4x25'].SiLens.oee = average(_.pluck(urldt, 'OEE'));
   });
 
   window.vm = new Vue({
