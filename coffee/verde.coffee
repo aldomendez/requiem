@@ -1,5 +1,6 @@
-sum = (arr) -> arr.reduce (a,b)-> +a + +b
-average = (arr)-> sum(arr)/ (arr.length)
+
+window.sum = (arr) -> arr.reduce (a,b)-> +a + +b
+window.average = (arr)-> sum(arr)/ (arr.length)
 Vue.filter 'perc', (val)->
 	Math.round(val*100)
 Vue.filter 'color', (val)->
@@ -23,17 +24,6 @@ window.vm = new Vue {
 	el: '#template'
 	data: {
 		bu:{
-			Amarillo:{
-				'SiLens':{
-					avail:0,perf:0,yiel:0,oee:0
-				}
-				'OSA Test':{
-					avail:0,perf:0,yiel:0,oee:0
-				}
-				'LIV Pack':{
-					avail:0,perf:0,yiel:0,oee:0
-				}
-			}
 			Verde:{
 				'Deflector':{
 					avail:0,perf:0,yiel:0,oee:0
@@ -45,30 +35,6 @@ window.vm = new Vue {
 					avail:0,perf:0,yiel:0,oee:0
 				}
 			}
-			Azul:{
-				'PLC Test':{
-					avail:0,perf:0,yiel:0,oee:0
-				}
-				'Welder Paquetes':{
-					avail:0,perf:0,yiel:0,oee:0
-				}
-			}
-			Naranja:{
-				'Welder':{
-					avail:0,perf:0,yiel:0,oee:0
-				}
-				'Pruebas 162x':{
-					avail:0,perf:0,yiel:0,oee:0
-				}
-				'Pruebas 161x':{
-					avail:0,perf:0,yiel:0,oee:0
-				}
-			}
 		}
-	}
-	computed:{
-		columns:()->
-			size = _.size vm.bu
-			if size <=1 then return 'one' else 'two'
 	}
 }

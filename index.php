@@ -16,7 +16,7 @@ function index()
     include "all.php";
 }
 
-function single_bu_score()
+function single_bu_score($bu)
 {
     include "single_bu_score.php";
 }

@@ -15,7 +15,7 @@
             <a class="active item" href="http://wmatvmlr401/lr4/">
               Avago
             </a>
-            <a class="item">
+            <a class="item" href="http://wmatvmlr401/lr4/oee-monitor/index.php">
               <i class="database icon"></i> OEE Dashboard
             </a>
           </div>
@@ -77,6 +77,6 @@
   <script src="http://wmatvmlr401/lr4/jsLib/underscore/1.8.3/underscore.js"></script>
   <script src="http://wmatvmlr401/lr4/jsLib/vue/0.12.9/vue.js"></script>
   <script src="http://wmatvmlr401/lr4/jsLib/vue-resource/0.1.11/vue-resource.js"></script>
-  <script src="http://wmatvmlr401/lr4/oee-monitor/js/single.js"></script>
+  <script src="http://wmatvmlr401/lr4/oee-monitor/js/<?php echo "$bu"; ?>.js"></script>
 </body>
 </html>

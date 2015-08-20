@@ -4,7 +4,7 @@
 		$files = array('oee_query_SiLens_every_x_h');
 		$inicio = strtotime('-4 hours');
 		$final = strtotime('now');
-		echo('Query for dates:' . date('Y-m-d H:i', $inicio) . "  >".  date('Y-m-d H:i', $final));
+		// echo('Query for dates:' . date('Y-m-d H:i', $inicio) . "  >".  date('Y-m-d H:i', $final));
 		$DB = new MxApps();
 
 		foreach ($files as $index => $value) {
@@ -28,7 +28,7 @@
 		$files = array('oe_insert_SiLens_every_x_h');
 		$inicio = strtotime('-4 hours');
 		$final = strtotime('now');
-		echo('Query for dates:' . date('Y-m-d H:i', $inicio) . "  >".  date('Y-m-d H:i', $final));
+		// echo('Query for dates:' . date('Y-m-d H:i', $inicio) . "  >".  date('Y-m-d H:i', $final));
 		$DB = new MxApps();
 
 		foreach ($files as $index => $value) {
