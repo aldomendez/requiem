@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css"  href="http://wmatvmlr401/lr4/jsLib/SemanticUi/2.0.7/semantic.css">
 </head>
 <body>
-  <div class="ui one column grid container" id="container">
+  <div class="ui two column grid container" id="container">
     <template id="template">
       <div class="one column row">
         <div class="column">
@@ -15,19 +15,20 @@
             <a class="active item" href="http://wmatvmlr401/lr4/">
               Avago
             </a>
-            <a class="item">
+            <a class="item" href="http://wmatvmlr401/lr4/oee-monitor/index.php">
               <i class="database icon"></i> OEE Dashboard
             </a>
           </div>
         </div>
       </div>
         <div class="column" v-repeat="bu">
-          <h1 class="ui center aligned header">{{$key}}</h1>
+          <!-- <pre>{{$data|json}}</pre> -->
+          <h1 class="ui center aligned header"><a href="http://wmatvmlr401/lr4/oee-monitor/index.php/bu/{{$key}}">{{$key}}</a></h1>
           <table class="ui yellow table">
             <tr v-repeat="$data">
               <td><h2>{{$key}}</h2></td>
               <td>
-                <div class="ui {{$data.avail | color}}  statistic">
+                <div class="ui {{$data.avail | color}} small statistic">
                   <div class="value">
                     {{$data.avail | perc}}%
                   </div>
@@ -37,7 +38,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui {{$data.perf | color}}  statistic">
+                <div class="ui {{$data.perf | color}} small statistic">
                   <div class="value">
                     {{$data.perf | perc}}%
                   </div>
@@ -47,7 +48,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui {{$data.yiel | color}}  statistic">
+                <div class="ui {{$data.yiel | color}} small statistic">
                   <div class="value">
                     {{$data.yiel | perc}}%
                   </div>
@@ -57,7 +58,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui {{$data.oee | color}} huge statistic">
+                <div class="ui {{$data.oee | color}} statistic">
                   <div class="value">
                     {{$data.oee | perc}}%
                   </div>
@@ -77,6 +78,6 @@
   <script src="http://wmatvmlr401/lr4/jsLib/underscore/1.8.3/underscore.js"></script>
   <script src="http://wmatvmlr401/lr4/jsLib/vue/0.12.9/vue.js"></script>
   <script src="http://wmatvmlr401/lr4/jsLib/vue-resource/0.1.11/vue-resource.js"></script>
-  <script src="http://wmatvmlr401/lr4/oee-monitor/js/single.js"></script>
+  <script src="http://wmatvmlr401/lr4/oee-monitor/js/all.js"></script>
 </body>
 </html>

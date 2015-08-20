@@ -8,3 +8,19 @@
 2015-08-08 16:04:14 - Started 2104
 2015-08-08 16:39:37 - Starting C:\Program Files\nodejs\node.exe --harmony "C:\Users\almendez\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js" -f "C:\apps\oee-monitor\puller.js" -l "MonitorPulling" -g 0.25 -w 1 -r 3 -a n
 2015-08-08 16:39:37 - Started 6432
+2015-08-18 03:22:59 - Starting C:\Program Files\nodejs\node.exe --harmony "C:\Users\almendez\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js" -f "C:\apps\oee-monitor\puller.js" -l "MonitorPulling" -g 0.25 -w 1 -r 3 -a n
+2015-08-18 03:22:59 - Started 2320
+2015-08-19 17:44:03 - Starting C:\Program Files\nodejs\node.exe --harmony "C:\Users\almendez\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js" -f "C:\apps\oee-monitor\puller.js" -l "MonitorPulling" -g 0.25 -w 1 -r 3 -a n
+2015-08-19 17:44:03 - Started 8496
+2015-08-19 17:47:44 - Starting C:\Program Files\nodejs\node.exe --harmony "C:\Users\almendez\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js" -f "C:\apps\oee-monitor\puller.js" -l "MonitorPulling" -g 0.25 -w 1 -r 3 -a n
+2015-08-19 17:47:44 - Started 6488
+2015-08-19 17:49:13 - Starting C:\Program Files\nodejs\node.exe --harmony "C:\Users\almendez\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js" -f "C:\apps\oee-monitor\puller.js" -l "MonitorPulling" -g 0.25 -w 1 -r 3 -a n
+2015-08-19 17:49:13 - Started 532
+2015-08-19 17:50:16 - Starting C:\Program Files\nodejs\node.exe --harmony "C:\Users\almendez\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js" -f "C:\apps\oee-monitor\puller.js" -l "MonitorPulling" -g 0.25 -w 1 -r 3 -a n
+2015-08-19 17:50:16 - Started 7356
+2015-08-19 17:51:20 - Starting C:\Program Files\nodejs\node.exe --harmony "C:\Users\almendez\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js" -f "C:\apps\oee-monitor\puller.js" -l "MonitorPulling" -g 0.25 -w 1 -r 3 -a n
+2015-08-19 17:51:20 - Started 6320
+2015-08-19 17:52:23 - Starting C:\Program Files\nodejs\node.exe --harmony "C:\Users\almendez\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js" -f "C:\apps\oee-monitor\puller.js" -l "MonitorPulling" -g 0.25 -w 1 -r 3 -a n
+2015-08-19 17:52:23 - Started 7816
+2015-08-19 17:53:27 - Starting C:\Program Files\nodejs\node.exe --harmony "C:\Users\almendez\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js" -f "C:\apps\oee-monitor\puller.js" -l "MonitorPulling" -g 0.25 -w 1 -r 3 -a n
+2015-08-19 17:53:27 - Started 7464

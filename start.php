@@ -29,7 +29,7 @@
             <tr>
               <td>Deflector</td>
               <td>
-                <div class="ui red statistic">
+                <div class="ui red statistic small">
                   <div class="value">
                     40%
                   </div>
@@ -39,12 +39,22 @@
                 </div>
               </td>
               <td>
-                <div class="ui yellow statistic">
+                <div class="ui yellow statistic small">
                   <div class="value">
                     80%
                   </div>
                   <div class="label">
                     Desempe&ntilde;o
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="ui green statistic small">
+                  <div class="value">
+                    99%
+                  </div>
+                  <div class="label">
+                    Calidad
                   </div>
                 </div>
               </td>
@@ -54,7 +64,7 @@
                     99%
                   </div>
                   <div class="label">
-                    Calidad
+                    OEE
                   </div>
                 </div>
               </td>
@@ -62,7 +72,7 @@
             <tr>
               <td>Pre/Post Bake</td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     40%
                   </div>
@@ -72,7 +82,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     80%
                   </div>
@@ -82,7 +92,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     99%
                   </div>
@@ -91,11 +101,21 @@
                   </div>
                 </div>
               </td>
+              <td>
+                <div class="ui green statistic">
+                  <div class="value">
+                    99%
+                  </div>
+                  <div class="label">
+                    OEE
+                  </div>
+                </div>
+              </td>
             </tr>
             <tr>
               <td>OSA Test</td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     40%
                   </div>
@@ -105,7 +125,7 @@
                 </div>
               </td>
               <td class="positive">
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     80%
                   </div>
@@ -115,12 +135,22 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     99%
                   </div>
                   <div class="label">
                     Calidad
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="ui green statistic">
+                  <div class="value">
+                    99%
+                  </div>
+                  <div class="label">
+                    OEE
                   </div>
                 </div>
               </td>
@@ -138,7 +168,7 @@
             <tr>
               <td>Deflector</td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     40%
                   </div>
@@ -148,7 +178,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     80%
                   </div>
@@ -158,12 +188,22 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     99%
                   </div>
                   <div class="label">
                     Calidad
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="ui green statistic">
+                  <div class="value">
+                    99%
+                  </div>
+                  <div class="label">
+                    OEE
                   </div>
                 </div>
               </td>
@@ -171,7 +211,7 @@
             <tr>
               <td>Pre/Post Bake</td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     40%
                   </div>
@@ -181,7 +221,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     80%
                   </div>
@@ -191,7 +231,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     99%
                   </div>
@@ -200,11 +240,21 @@
                   </div>
                 </div>
               </td>
+              <td>
+                <div class="ui green statistic">
+                  <div class="value">
+                    99%
+                  </div>
+                  <div class="label">
+                    OEE
+                  </div>
+                </div>
+              </td>
             </tr>
             <tr>
               <td>OSA Test</td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     40%
                   </div>
@@ -214,7 +264,7 @@
                 </div>
               </td>
               <td class="positive">
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     80%
                   </div>
@@ -224,12 +274,22 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     99%
                   </div>
                   <div class="label">
                     Calidad
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="ui green statistic">
+                  <div class="value">
+                    99%
+                  </div>
+                  <div class="label">
+                    OEE
                   </div>
                 </div>
               </td>
@@ -251,7 +311,7 @@
             <tr>
               <td>Deflector</td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     40%
                   </div>
@@ -261,7 +321,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     80%
                   </div>
@@ -271,12 +331,22 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     99%
                   </div>
                   <div class="label">
                     Calidad
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="ui green statistic">
+                  <div class="value">
+                    99%
+                  </div>
+                  <div class="label">
+                    OEE
                   </div>
                 </div>
               </td>
@@ -284,7 +354,7 @@
             <tr>
               <td>Pre/Post Bake</td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     40%
                   </div>
@@ -294,7 +364,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     80%
                   </div>
@@ -304,7 +374,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     99%
                   </div>
@@ -313,11 +383,21 @@
                   </div>
                 </div>
               </td>
+              <td>
+                <div class="ui green statistic">
+                  <div class="value">
+                    99%
+                  </div>
+                  <div class="label">
+                    OEE
+                  </div>
+                </div>
+              </td>
             </tr>
             <tr>
               <td>OSA Test</td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     40%
                   </div>
@@ -327,7 +407,7 @@
                 </div>
               </td>
               <td class="positive">
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     80%
                   </div>
@@ -337,12 +417,22 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     99%
                   </div>
                   <div class="label">
                     Calidad
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="ui green statistic">
+                  <div class="value">
+                    99%
+                  </div>
+                  <div class="label">
+                    OEE
                   </div>
                 </div>
               </td>
@@ -360,7 +450,7 @@
             <tr>
               <td>Deflector</td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     40%
                   </div>
@@ -370,7 +460,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     80%
                   </div>
@@ -380,12 +470,22 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     99%
                   </div>
                   <div class="label">
                     Calidad
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="ui green statistic">
+                  <div class="value">
+                    99%
+                  </div>
+                  <div class="label">
+                    OEE
                   </div>
                 </div>
               </td>
@@ -393,7 +493,7 @@
             <tr>
               <td>Pre/Post Bake</td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     40%
                   </div>
@@ -403,7 +503,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     80%
                   </div>
@@ -413,7 +513,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     99%
                   </div>
@@ -422,11 +522,21 @@
                   </div>
                 </div>
               </td>
+              <td>
+                <div class="ui green statistic">
+                  <div class="value">
+                    99%
+                  </div>
+                  <div class="label">
+                    OEE
+                  </div>
+                </div>
+              </td>
             </tr>
             <tr>
               <td>OSA Test</td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     40%
                   </div>
@@ -436,7 +546,7 @@
                 </div>
               </td>
               <td class="positive">
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     80%
                   </div>
@@ -446,12 +556,22 @@
                 </div>
               </td>
               <td>
-                <div class="ui statistic">
+                <div class="ui statistic small">
                   <div class="value">
                     99%
                   </div>
                   <div class="label">
                     Calidad
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="ui green statistic">
+                  <div class="value">
+                    99%
+                  </div>
+                  <div class="label">
+                    OEE
                   </div>
                 </div>
               </td>

@@ -7,11 +7,13 @@ $app = new Slim();
 $app->get('/', 'index' );
 $app->get('/bu/:bu', 'single_bu_score' );
 $app->get('/update/:target', 'updateTarget');
+$app->get('/get/:depto/:product/:process', 'returnOEEDataByProcess');
+
 
 
 function index()
 {
-    include "start.php";
+    include "all.php";
 }
 
 function single_bu_score()
@@ -24,5 +26,9 @@ function updateTarget($target='')
     require './procedures/update.php';
 }
 
+function returnOEEDataByProcess($depto, $product, $process)
+{
+	require './procedures/returnOEEDataByProcess.php';
+}
 
 $app->run();

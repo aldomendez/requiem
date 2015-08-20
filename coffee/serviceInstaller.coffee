@@ -2,7 +2,7 @@ Service = require('node-windows').Service;
 
 # Create a new service object
 svc = new Service {
-  name:'MonitorPulling',
+  name:'OeePulling',
   description: 'NodeJs Web Pulling to update OEE data',
   script: 'C:\\apps\\oee-monitor\\js\\puller.js'
 }
@@ -12,4 +12,8 @@ svc = new Service {
 svc.on 'install', ()->
   svc.start();
 
+svc.on 'unistall', ()->
+	console.log 'Uninstall complete'
+
 svc.install();
+# svc.uninstall();
