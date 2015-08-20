@@ -5,6 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>OEE dashboard</title>
   <link rel="stylesheet" type="text/css"  href="http://wmatvmlr401/lr4/jsLib/SemanticUi/2.0.7/semantic.css">
+  <style>
+    .ui.statistics .statistic > .label, .ui.statistic > .label {
+      font-size: .8em;
+    }
+  </style>
 </head>
 <body>
   <div class="ui two column grid container" id="container">
@@ -28,7 +33,7 @@
             <tr v-repeat="$data">
               <td><h2>{{$key}}</h2></td>
               <td>
-                <div class="ui {{$data.avail | color}} small statistic">
+                <div class="ui {{$data.avail | color}} tiny statistic">
                   <div class="value">
                     {{$data.avail | perc}}%
                   </div>
@@ -38,7 +43,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui {{$data.perf | color}} small statistic">
+                <div class="ui {{$data.perf | color}} tiny statistic">
                   <div class="value">
                     {{$data.perf | perc}}%
                   </div>
@@ -48,7 +53,7 @@
                 </div>
               </td>
               <td>
-                <div class="ui {{$data.yiel | color}} small statistic">
+                <div class="ui {{$data.yiel | color}} tiny statistic">
                   <div class="value">
                     {{$data.yiel | perc}}%
                   </div>

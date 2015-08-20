@@ -2,7 +2,8 @@
 window.sum = (arr) -> arr.reduce (a,b)-> +a + +b
 window.average = (arr)-> sum(arr)/ (arr.length)
 Vue.filter 'perc', (val)->
-	Math.round(val*100)
+	perc = Math.round(val*100)
+	if perc > 100 then return 100 else return perc
 Vue.filter 'color', (val)->
 	if 0 < val < .7 then return 'red'
 	if .7 < val < .9 then return 'yellow'
@@ -24,17 +25,13 @@ window.vm = new Vue {
 	el: '#template'
 	data: {
 		bu:{
-			Naranja:{
-				'Welder':{
+			'PMQPSK':{
+				'PLC Test':{
 					avail:0,perf:0,yiel:0,oee:0
 				}
-				'Pruebas 162x':{
+				'Welder Paquetes':{
 					avail:0,perf:0,yiel:0,oee:0
 				}
-				'Pruebas 161x':{
-					avail:0,perf:0,yiel:0,oee:0
-				}
-			}
-		}
+			}		}
 	}
 }
