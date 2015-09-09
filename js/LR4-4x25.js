@@ -36,11 +36,11 @@
   url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_SiLens_every_x_h.json';
 
   Vue.http.get(url, function(data, status, request) {
-    window.urldt = data;
-    vm.bu['LR4-4x25'].SiLens.avail = average(_.pluck(urldt, 'AVAILABILITY'));
-    vm.bu['LR4-4x25'].SiLens.perf = average(_.pluck(urldt, 'PERFORMANCE'));
-    vm.bu['LR4-4x25'].SiLens.yiel = average(_.pluck(urldt, 'YIELD'));
-    return vm.bu['LR4-4x25'].SiLens.oee = average(_.pluck(urldt, 'OEE'));
+    window.lr4 = data;
+    vm.bu['LR4-4x25'].SiLens.avail = average(_.pluck(lr4, 'AVAILABILITY'));
+    vm.bu['LR4-4x25'].SiLens.perf = average(_.pluck(lr4, 'PERFORMANCE'));
+    vm.bu['LR4-4x25'].SiLens.yiel = average(_.pluck(lr4, 'YIELD'));
+    return vm.bu['LR4-4x25'].SiLens.oee = average(_.pluck(lr4, 'OEE'));
   });
 
   window.vm = new Vue({

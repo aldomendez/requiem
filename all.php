@@ -29,7 +29,7 @@
           <!-- <pre>{{$data|json}}</pre> -->
         <div class="column" v-repeat="bu">
           <h1 class="ui center aligned header"><a href="http://wmatvmlr401/lr4/oee-monitor/index.php/bu/{{$key}}">{{$key}}</a></h1>
-          <table class="ui yellow table">
+          <table class="ui table">
             <tr v-repeat="$data">
               <td><h2>{{$key}}</h2></td>
               <td>

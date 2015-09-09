@@ -27,6 +27,16 @@ Vue.http.get url, (data, status, request)->
 	vm.bu['Engines']['Functional'].yiel = average(_.pluck(urldt,'YIELD'))
 	vm.bu['Engines']['Functional'].oee = average(_.pluck(urldt,'OEE'))
 
+url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_Welder.json'
+Vue.http.get url, (data, status, request)->
+	window.urldt = data
+	vm.bu['Engines']['Welder'].avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['Engines']['Welder'].perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['Engines']['Welder'].yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['Engines']['Welder'].oee = average(_.pluck(urldt,'OEE'))
+
+
+
 # url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-OSA_LIV_every_x_h.json'
 # Vue.http.get url, (data, status, request)->
 # 	window.urldt = data

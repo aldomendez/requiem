@@ -4,7 +4,8 @@
 		$files = array(
 			'oee_query_SiLens_every_x_h',
 			'oee_query_LR4-OSA_LIV_every_x_h',
-			'oee_query_Engines_Functional'
+			'oee_query_Engines_Functional',
+			'oee_query_Engines_Welder'
 		);
 		
 		$inicio = strtotime('-4 hours');
