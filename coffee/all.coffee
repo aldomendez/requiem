@@ -36,16 +36,6 @@ Vue.http.get url, (data, status, request)->
 	vm.bu['Engines']['Welder'].oee = average(_.pluck(urldt,'OEE'))
 
 
-
-# url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-OSA_LIV_every_x_h.json'
-# Vue.http.get url, (data, status, request)->
-# 	window.urldt = data
-# 	vm.bu.Amarillo['OSA Test'].avail = average(_.pluck(urldt,'AVAILABILITY'))
-# 	vm.bu.Amarillo['OSA Test'].perf = average(_.pluck(urldt,'PERFORMANCE'))
-# 	vm.bu.Amarillo['OSA Test'].yiel = average(_.pluck(urldt,'YIELD'))
-# 	vm.bu.Amarillo['OSA Test'].oee = average(_.pluck(urldt,'OEE'))
-
-
 window.vm = new Vue {
 	el: '#template'
 	data: {
@@ -97,5 +87,10 @@ window.vm = new Vue {
 		columns:()->
 			size = _.size vm.bu
 			if size <=1 then return 'one' else 'two'
+	}
+	methods:{
+		showDetail:(e)->
+			# e.preventDefault();
+			console.log(e)
 	}
 }

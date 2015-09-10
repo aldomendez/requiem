@@ -153,6 +153,11 @@
           return 'two';
         }
       }
+    },
+    methods: {
+      showDetail: function(e) {
+        return console.log(e);
+      }
     }
   });
 
