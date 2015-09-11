@@ -9,6 +9,34 @@
     .ui.statistics .statistic > .label, .ui.statistic > .label {
       font-size: .8em;
     }
+    .bounce-enter {
+      animation: bounce-in .5s;
+    }
+    .bounce-leave {
+      animation: bounce-out .5s;
+    }
+    @keyframes bounce-in {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    @keyframes bounce-out {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -26,11 +54,11 @@
           </div>
         </div>
       </div>
-        <div class="column" v-repeat="bu">
+        <div class="column" v-repeat="bu" v-show="show === 'all'">
           <h1 class="ui center aligned header"><a href="http://wmatvmlr401/lr4/oee-monitor/index.php/bu/{{$key}}">{{$key}}</a></h1>
           <table class="ui table">
             <tr v-repeat="$data">
-              <td><h2><a href="#" v-on="click:showDetail($key)">{{$key}}</a></h2></td>
+              <td><h2><a href="#" v-on="click:showDetail($key,$data)">{{$key}}</a></h2></td>
               <td>
                 <div class="ui {{$data.avail | color}} tiny statistic">
                   <div class="value">
@@ -74,7 +102,51 @@
             </tr>
           </table>
         </div>
-<pre>{{$data|json}}</pre>
+        <div class="one column row">
+          <div class="column"  v-show="show === 'specific'" v-transition="bounce">
+            <button class="ui labeled icon button" v-on="click:returnToMasterTable">
+              <i class="left arrow icon"></i>
+              return
+            </button>
+            <table class="ui celled large compact selectable table">
+              <thead>
+                <tr>
+                  <th>Start</th>
+                  <th>End</th>
+                  <th>Depto</th>
+                  <th>Product</th>
+                  <th>Process</th>
+                  <th>Machine</th>
+                  <th>AvailableTime</th>
+                  <th>BuildQty</th>
+                  <th>Aval</th>
+                  <th>Perf</th>
+                  <th>Yield</th>
+                  <th>OEE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-repeat='specific'>
+                  <td>{{S_START_DT}}</td>
+                  <td>{{S_END_DT}}</td>
+                  <td>{{DEPTO}}</td>
+                  <td>{{PRODUCT}}</td>
+                  <td>{{PROCESS}}</td>
+                  <td>{{SYSTEM_ID}}</td>
+                  <td>{{TOTAL_PRODUCTION_TIME}}min</td>
+                  <td>{{BUILD_QTY}}</td>
+                  <td class="{{AVAILABILITY | color |tableColor}}">{{AVAILABILITY |perc}}%</td>
+                  <td class="{{PERFORMANCE | color |tableColor}}">{{PERFORMANCE |perc}}%</td>
+                  <td class="{{YIELD | color |tableColor}}">{{YIELD |perc}}%</td>
+                  <td class="{{OEE | color |tableColor}}">{{OEE |perc}}%</td>
+                </tr>
+              </body>
+            </table>
+          </div>
+        </div>
+        
+
+<!-- <pre>{{specific|json}}</pre> -->
 
 
     </template>

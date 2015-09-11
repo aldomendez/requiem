@@ -1,6 +1,6 @@
-select rownum+(select max(id) from oee_master2) id,to_date(':inicio','yyyy-mm-dd hh24:mi') s_start_dt, to_date(':final','yyyy-mm-dd hh24:mi')
+select rownum+(select max(id) from oee_master2) id,':inicio' s_start_dt, ':final'
 s_end_dt, a.* , (availability * performance * yield) oee from ( 
-select bu_id bu,depto,product,process,display_name,round((to_date(':final','yyyy-mm-dd hh24:mi') - to_date(':inicio','yyyy-mm-dd hh24:mi'))*24*60,0) SAMPLE_TIME_SPAN,
+select bu_id bu,depto,product,process,display_name system_id,round((to_date(':final','yyyy-mm-dd hh24:mi') - to_date(':inicio','yyyy-mm-dd hh24:mi'))*24*60,0) SAMPLE_TIME_SPAN,
     round(sum(cycle_time),0) total_production_time,
     count(serial_num) build_qty,
     round(sum(cycle_time)/count(serial_num),2) avg_ct,

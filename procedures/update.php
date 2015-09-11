@@ -3,9 +3,11 @@
 		// every our we create a cache
 		$files = array(
 			'oee_query_SiLens_every_x_h',
-			'oee_query_LR4-OSA_LIV_every_x_h',
+			'oee_query_LR4-OSA_LIV',
 			'oee_query_Engines_Functional',
-			'oee_query_Engines_Welder'
+			'oee_query_Engines_Welder',
+			'oee_query_pmqpsk_dctest',
+			'oee_query_pmqpsk_plctest'
 		);
 		
 		$inicio = strtotime('-4 hours');
