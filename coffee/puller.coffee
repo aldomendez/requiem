@@ -2,6 +2,30 @@
 rest = require 'unirest'
 fs = require 'fs'
 cron = require 'node-schedule'
+checksum = require 'checksum'
+emailjs = require 'emailjs'
+
+serviceParameters =  {
+	user:process.env['notificationUser']
+	password:process.env['notificationPassword']
+	host:'smtp.gmail.com'
+	tls:true
+	port:587
+}
+
+console.log serviceParameters
+server = emailjs.server.connect serviceParameters
+
+mailTest = ()->
+	server.send {
+		from:'OEE Monitor <cyopticsmexico@gmail.com>'
+		to:'aldo.mendez@avagotech.com'
+		subject:'Mira sin manos'
+		text:'Prueba para el envio de notificaciones por <correo></correo>'
+	}, (error, message)->
+		console.log error
+
+# mailTest()
 
 console.log 'initialized'
 # Inicializacion de variables
@@ -24,8 +48,9 @@ callRest = (addr)->
  console.log '--> Making the question'
  rest.get(addr).end (response)->
   running = false
-  console.log '<-- Response getted' + counter++
-  writeFile('C:/apps/oee-monitor/cache/response' + ++counter + '.json', JSON.stringify response)
+  cs = checksum JSON.stringify response.body
+  console.log '<-- Response getted ' + cs
+  writeFile('C:/apps/oee-monitor/cache/response' + cs + '.json', response.body)
 
 ###
 just print in the console information to know the service is alive
@@ -60,6 +85,7 @@ updateEveryFourHours = ()->
 	callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/four_ours');
 
 
+# updateHourly()
 ###
 Scheduler
 ###

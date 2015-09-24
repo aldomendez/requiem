@@ -17,7 +17,7 @@
 			array('oee_query_uITLA_DEFLECTOR',4),
 			array('oee_query_LR4-pack_Screening',4)
 		);
-		
+		$ans = array();
 		$final = strtotime('now');
 		// echo('Query for dates:' . date('Y-m-d H:i', $inicio) . "  >".  date('Y-m-d H:i', $final));
 		$DB = new MxApps();
@@ -42,10 +42,11 @@
 				// throw new Exception("No arrojo datos la base de datos [".$queryName. "]", 1);
 			} else {
 				file_put_contents('cache/' . $queryName . '.json', $json);
-				echo $json;
+				array_push($ans, json_decode($json));
 			}
 		}
 		$DB->close();
+		echo json_encode($ans);
 	} elseif ($target == 'four_ours') {
 		// Only insert data every four hours
 		$files = array('oee_insert_SiLens_every_x_h');

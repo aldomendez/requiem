@@ -1,11 +1,38 @@
 (function() {
-  var callRest, counter, cron, fs, j, k, l, logger, m, n, o, p, rest, running, timeoutTime, updateEveryFourHours, updateHourly, writeFile;
+  var callRest, checksum, counter, cron, emailjs, fs, j, k, l, logger, m, mailTest, n, o, p, rest, running, server, serviceParameters, timeoutTime, updateEveryFourHours, updateHourly, writeFile;
 
   rest = require('unirest');
 
   fs = require('fs');
 
   cron = require('node-schedule');
+
+  checksum = require('checksum');
+
+  emailjs = require('emailjs');
+
+  serviceParameters = {
+    user: process.env['notificationUser'],
+    password: process.env['notificationPassword'],
+    host: 'smtp.gmail.com',
+    tls: true,
+    port: 587
+  };
+
+  console.log(serviceParameters);
+
+  server = emailjs.server.connect(serviceParameters);
+
+  mailTest = function() {
+    return server.send({
+      from: 'OEE Monitor <cyopticsmexico@gmail.com>',
+      to: 'aldo.mendez@avagotech.com',
+      subject: 'Mira sin manos',
+      text: 'Prueba para el envio de notificaciones por <correo></correo>'
+    }, function(error, message) {
+      return console.log(error);
+    });
+  };
 
   console.log('initialized');
 
@@ -27,9 +54,11 @@
     running = true;
     console.log('--> Making the question');
     return rest.get(addr).end(function(response) {
+      var cs;
       running = false;
-      console.log('<-- Response getted' + counter++);
-      return writeFile('C:/apps/oee-monitor/cache/response' + ++counter + '.json', JSON.stringify(response));
+      cs = checksum(JSON.stringify(response.body));
+      console.log('<-- Response getted ' + cs);
+      return writeFile('C:/apps/oee-monitor/cache/response' + cs + '.json', response.body);
     });
   };
 
@@ -66,10 +95,12 @@
    */
 
   updateHourly = function() {
+    console.log('File updated by 1 hour');
     return callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly');
   };
 
   updateEveryFourHours = function() {
+    console.log('File updated by 4 hour');
     return callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/four_ours');
   };
 
