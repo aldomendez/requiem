@@ -37,7 +37,7 @@
                     {{$data.avail | perc}}%
                   </div>
                   <div class="label">
-                    Disponibilidad
+                    Availability
                   </div>
                 </div>
               </td>
@@ -47,7 +47,7 @@
                     {{$data.perf | perc}}%
                   </div>
                   <div class="label">
-                    Desempe&ntilde;o
+                    Performance
                   </div>
                 </div>
               </td>
@@ -57,7 +57,7 @@
                     {{$data.yiel | perc}}%
                   </div>
                   <div class="label">
-                    Calidad
+                    Effectiveness
                   </div>
                 </div>
               </td>

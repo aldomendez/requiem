@@ -11,23 +11,24 @@ Vue.filter 'color', (val)->
 
 
 
+
 url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_Functional.json'
 Vue.http.get url, (data, status, request)->
-	window.urldt = data
-	vm.bu['Engines']['Functional'].avail = average(_.pluck(urldt,'AVAILABILITY'))
-	vm.bu['Engines']['Functional'].perf = average(_.pluck(urldt,'PERFORMANCE'))
-	vm.bu['Engines']['Functional'].yiel = average(_.pluck(urldt,'YIELD'))
-	vm.bu['Engines']['Functional'].oee = average(_.pluck(urldt,'OEE'))
-
+	urldt = data
+	vm.bu['Engines']['Functional 162x'].raw = data
+	vm.bu['Engines']['Functional 162x'].avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['Engines']['Functional 162x'].perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['Engines']['Functional 162x'].yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['Engines']['Functional 162x'].oee = average(_.pluck(urldt,'OEE'))
 
 url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_Welder.json'
 Vue.http.get url, (data, status, request)->
-	window.urldt = data
+	urldt = data
+	vm.bu['Engines']['Welder'].raw = data
 	vm.bu['Engines']['Welder'].avail = average(_.pluck(urldt,'AVAILABILITY'))
 	vm.bu['Engines']['Welder'].perf = average(_.pluck(urldt,'PERFORMANCE'))
 	vm.bu['Engines']['Welder'].yiel = average(_.pluck(urldt,'YIELD'))
 	vm.bu['Engines']['Welder'].oee = average(_.pluck(urldt,'OEE'))
-
 
 
 
@@ -39,12 +40,12 @@ window.vm = new Vue {
 				'Welder':{
 					avail:0,perf:0,yiel:0,oee:0
 				}
-				'Functional':{
+				'Functional 162x':{
 					avail:0,perf:0,yiel:0,oee:0
 				}
-				'Pruebas 161x':{
-					avail:0,perf:0,yiel:0,oee:0
-				}
+				# 'Pruebas 161x':{
+				# 	avail:0,perf:0,yiel:0,oee:0
+				# }
 			}
 		}
 	}

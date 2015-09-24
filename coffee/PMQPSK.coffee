@@ -11,14 +11,23 @@ Vue.filter 'color', (val)->
 
 
 
-
-url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_SiLens_every_x_h.json'
+url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_pmqpsk_dctest.json'
 Vue.http.get url, (data, status, request)->
-	window.urldt = data
-	vm.bu.Amarillo.SiLens.avail = average(_.pluck(urldt,'AVAILABILITY'))
-	vm.bu.Amarillo.SiLens.perf = average(_.pluck(urldt,'PERFORMANCE'))
-	vm.bu.Amarillo.SiLens.yiel = average(_.pluck(urldt,'YIELD'))
-	vm.bu.Amarillo.SiLens.oee = average(_.pluck(urldt,'OEE'))
+	urldt = data
+	vm.bu['PMQPSK']['DC Test'].raw = data
+	vm.bu['PMQPSK']['DC Test'].avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['PMQPSK']['DC Test'].perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['PMQPSK']['DC Test'].yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['PMQPSK']['DC Test'].oee = average(_.pluck(urldt,'OEE'))
+
+url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_pmqpsk_plctest.json'
+Vue.http.get url, (data, status, request)->
+	urldt = data
+	vm.bu['PMQPSK']['PLC Test'].raw = data
+	vm.bu['PMQPSK']['PLC Test'].avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['PMQPSK']['PLC Test'].perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['PMQPSK']['PLC Test'].yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['PMQPSK']['PLC Test'].oee = average(_.pluck(urldt,'OEE'))
 
 
 window.vm = new Vue {
@@ -26,12 +35,13 @@ window.vm = new Vue {
 	data: {
 		bu:{
 			'PMQPSK':{
+				'DC Test':{
+					avail:0,perf:0,yiel:0,oee:0
+				}
 				'PLC Test':{
 					avail:0,perf:0,yiel:0,oee:0
 				}
-				'Welder Paquetes':{
-					avail:0,perf:0,yiel:0,oee:0
-				}
-			}		}
+			}		
+		}
 	}
 }

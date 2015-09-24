@@ -14,11 +14,30 @@ Vue.filter 'color', (val)->
 
 url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_SiLens_every_x_h.json'
 Vue.http.get url, (data, status, request)->
-	window.lr4 = data
-	vm.bu['LR4-4x25'].SiLens.avail = average(_.pluck(lr4,'AVAILABILITY'))
-	vm.bu['LR4-4x25'].SiLens.perf = average(_.pluck(lr4,'PERFORMANCE'))
-	vm.bu['LR4-4x25'].SiLens.yiel = average(_.pluck(lr4,'YIELD'))
-	vm.bu['LR4-4x25'].SiLens.oee = average(_.pluck(lr4,'OEE'))
+	urldt = data
+	vm.bu['LR4-4x25'].SiLens.raw = data
+	vm.bu['LR4-4x25'].SiLens.avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['LR4-4x25'].SiLens.perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['LR4-4x25'].SiLens.yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['LR4-4x25'].SiLens.oee = average(_.pluck(urldt,'OEE'))
+
+url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-OSA_LIV.json'
+Vue.http.get url, (data, status, request)->
+	urldt = data
+	vm.bu['LR4-4x25']['OSA Test'].raw = data
+	vm.bu['LR4-4x25']['OSA Test'].avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['LR4-4x25']['OSA Test'].perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['LR4-4x25']['OSA Test'].yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['LR4-4x25']['OSA Test'].oee = average(_.pluck(urldt,'OEE'))
+
+url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-pack_Screening.json'
+Vue.http.get url, (data, status, request)->
+	urldt = data
+	vm.bu['LR4-4x25']['Screening'].raw = data
+	vm.bu['LR4-4x25']['Screening'].avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['LR4-4x25']['Screening'].perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['LR4-4x25']['Screening'].yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['LR4-4x25']['Screening'].oee = average(_.pluck(urldt,'OEE'))
 
 
 window.vm = new Vue {

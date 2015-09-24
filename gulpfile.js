@@ -9,7 +9,7 @@ var BASE = __dirname;
 
 function serverPath (path) {
   // Obtiene la direccion a la que se enviaran los datos
-  var rgx = /[a-zA-Z0-9-_~\. ]*$/;
+  var rgx = /[a-zA-Z0-9-_~µ\. ]*$/;
   path = path.replace(rgx, '');
   return  path.replace(BASE,'');
 }

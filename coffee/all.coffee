@@ -2,11 +2,11 @@ sum = (arr) -> arr.reduce (a,b)-> +a + +b
 average = (arr)-> sum(arr)/ (arr.length)
 Vue.filter 'perc', (val)->
 	perc = Math.round(val*100)
-	if perc > 100 then return 100 else return perc
+	# if perc > 100 then return 100 else return perc
 Vue.filter 'color', (val)->
 	if 0 < val < .7 then return 'red'
 	if .7 <= val < .9 then return 'yellow'
-	if .9 < val <= 3 then return 'green'
+	if .9 < val <= 10 then return 'green'
 
 Vue.filter 'tableColor', (val)->
 	if val is 'red' then return 'negative'
@@ -49,20 +49,20 @@ window.vm = new Vue {
 				'PLC Test':{
 					raw:[],avail:0,perf:0,yiel:0,oee:0
 				}
-				'Welder Paquetes':{
-					raw:[],avail:0,perf:0,yiel:0,oee:0
-				}
+				# 'Welder':{
+				# 	raw:[],avail:0,perf:0,yiel:0,oee:0
+				# }
 			}
 			'Engines':{
 				'Welder':{
 					raw:[],avail:0,perf:0,yiel:0,oee:0
 				}
-				'Functional':{
+				'Functional 162x':{
 					raw:[],avail:0,perf:0,yiel:0,oee:0
 				}
-				'Pruebas 161x':{
-					raw:[],avail:0,perf:0,yiel:0,oee:0
-				}
+				# 'Functional 161x':{
+				# 	raw:[],avail:0,perf:0,yiel:0,oee:0
+				# }
 			}
 		}
 	}
@@ -90,14 +90,32 @@ Vue.http.get url, (data, status, request)->
 	vm.bu['LR4-4x25'].SiLens.yiel = average(_.pluck(urldt,'YIELD'))
 	vm.bu['LR4-4x25'].SiLens.oee = average(_.pluck(urldt,'OEE'))
 
+url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-OSA_LIV.json'
+Vue.http.get url, (data, status, request)->
+	urldt = data
+	vm.bu['LR4-4x25']['OSA Test'].raw = data
+	vm.bu['LR4-4x25']['OSA Test'].avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['LR4-4x25']['OSA Test'].perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['LR4-4x25']['OSA Test'].yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['LR4-4x25']['OSA Test'].oee = average(_.pluck(urldt,'OEE'))
+
+url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-pack_Screening.json'
+Vue.http.get url, (data, status, request)->
+	urldt = data
+	vm.bu['LR4-4x25']['Screening'].raw = data
+	vm.bu['LR4-4x25']['Screening'].avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['LR4-4x25']['Screening'].perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['LR4-4x25']['Screening'].yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['LR4-4x25']['Screening'].oee = average(_.pluck(urldt,'OEE'))
+
 url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_Functional.json'
 Vue.http.get url, (data, status, request)->
 	urldt = data
-	vm.bu['Engines']['Functional'].raw = data
-	vm.bu['Engines']['Functional'].avail = average(_.pluck(urldt,'AVAILABILITY'))
-	vm.bu['Engines']['Functional'].perf = average(_.pluck(urldt,'PERFORMANCE'))
-	vm.bu['Engines']['Functional'].yiel = average(_.pluck(urldt,'YIELD'))
-	vm.bu['Engines']['Functional'].oee = average(_.pluck(urldt,'OEE'))
+	vm.bu['Engines']['Functional 162x'].raw = data
+	vm.bu['Engines']['Functional 162x'].avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['Engines']['Functional 162x'].perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['Engines']['Functional 162x'].yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['Engines']['Functional 162x'].oee = average(_.pluck(urldt,'OEE'))
 
 url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_Welder.json'
 Vue.http.get url, (data, status, request)->
@@ -126,15 +144,6 @@ Vue.http.get url, (data, status, request)->
 	vm.bu['PMQPSK']['PLC Test'].yiel = average(_.pluck(urldt,'YIELD'))
 	vm.bu['PMQPSK']['PLC Test'].oee = average(_.pluck(urldt,'OEE'))
 
-url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-OSA_LIV.json'
-Vue.http.get url, (data, status, request)->
-	urldt = data
-	vm.bu['LR4-4x25']['OSA Test'].raw = data
-	vm.bu['LR4-4x25']['OSA Test'].avail = average(_.pluck(urldt,'AVAILABILITY'))
-	vm.bu['LR4-4x25']['OSA Test'].perf = average(_.pluck(urldt,'PERFORMANCE'))
-	vm.bu['LR4-4x25']['OSA Test'].yiel = average(_.pluck(urldt,'YIELD'))
-	vm.bu['LR4-4x25']['OSA Test'].oee = average(_.pluck(urldt,'OEE'))
-
 url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_uITLA_LENS.json'
 Vue.http.get url, (data, status, request)->
 	urldt = data
@@ -161,12 +170,3 @@ Vue.http.get url, (data, status, request)->
 	vm.bu['µITLA']['Deflector'].perf = average(_.pluck(urldt,'PERFORMANCE'))
 	vm.bu['µITLA']['Deflector'].yiel = average(_.pluck(urldt,'YIELD'))
 	vm.bu['µITLA']['Deflector'].oee = average(_.pluck(urldt,'OEE'))
-
-url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-pack_Screening.json'
-Vue.http.get url, (data, status, request)->
-	urldt = data
-	vm.bu['LR4-4x25']['Screening'].raw = data
-	vm.bu['LR4-4x25']['Screening'].avail = average(_.pluck(urldt,'AVAILABILITY'))
-	vm.bu['LR4-4x25']['Screening'].perf = average(_.pluck(urldt,'PERFORMANCE'))
-	vm.bu['LR4-4x25']['Screening'].yiel = average(_.pluck(urldt,'YIELD'))
-	vm.bu['LR4-4x25']['Screening'].oee = average(_.pluck(urldt,'OEE'))

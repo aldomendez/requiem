@@ -13,12 +13,7 @@
 
   Vue.filter('perc', function(val) {
     var perc;
-    perc = Math.round(val * 100);
-    if (perc > 100) {
-      return 100;
-    } else {
-      return perc;
-    }
+    return perc = Math.round(val * 100);
   });
 
   Vue.filter('color', function(val) {
@@ -28,7 +23,7 @@
     if ((.7 <= val && val < .9)) {
       return 'yellow';
     }
-    if ((.9 < val && val <= 3)) {
+    if ((.9 < val && val <= 10)) {
       return 'green';
     }
   });
@@ -111,13 +106,6 @@
             perf: 0,
             yiel: 0,
             oee: 0
-          },
-          'Welder Paquetes': {
-            raw: [],
-            avail: 0,
-            perf: 0,
-            yiel: 0,
-            oee: 0
           }
         },
         'Engines': {
@@ -128,14 +116,7 @@
             yiel: 0,
             oee: 0
           },
-          'Functional': {
-            raw: [],
-            avail: 0,
-            perf: 0,
-            yiel: 0,
-            oee: 0
-          },
-          'Pruebas 161x': {
+          'Functional 162x': {
             raw: [],
             avail: 0,
             perf: 0,
@@ -179,16 +160,40 @@
     return vm.bu['LR4-4x25'].SiLens.oee = average(_.pluck(urldt, 'OEE'));
   });
 
+  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-OSA_LIV.json';
+
+  Vue.http.get(url, function(data, status, request) {
+    var urldt;
+    urldt = data;
+    vm.bu['LR4-4x25']['OSA Test'].raw = data;
+    vm.bu['LR4-4x25']['OSA Test'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
+    vm.bu['LR4-4x25']['OSA Test'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
+    vm.bu['LR4-4x25']['OSA Test'].yiel = average(_.pluck(urldt, 'YIELD'));
+    return vm.bu['LR4-4x25']['OSA Test'].oee = average(_.pluck(urldt, 'OEE'));
+  });
+
+  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-pack_Screening.json';
+
+  Vue.http.get(url, function(data, status, request) {
+    var urldt;
+    urldt = data;
+    vm.bu['LR4-4x25']['Screening'].raw = data;
+    vm.bu['LR4-4x25']['Screening'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
+    vm.bu['LR4-4x25']['Screening'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
+    vm.bu['LR4-4x25']['Screening'].yiel = average(_.pluck(urldt, 'YIELD'));
+    return vm.bu['LR4-4x25']['Screening'].oee = average(_.pluck(urldt, 'OEE'));
+  });
+
   url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_Functional.json';
 
   Vue.http.get(url, function(data, status, request) {
     var urldt;
     urldt = data;
-    vm.bu['Engines']['Functional'].raw = data;
-    vm.bu['Engines']['Functional'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
-    vm.bu['Engines']['Functional'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
-    vm.bu['Engines']['Functional'].yiel = average(_.pluck(urldt, 'YIELD'));
-    return vm.bu['Engines']['Functional'].oee = average(_.pluck(urldt, 'OEE'));
+    vm.bu['Engines']['Functional 162x'].raw = data;
+    vm.bu['Engines']['Functional 162x'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
+    vm.bu['Engines']['Functional 162x'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
+    vm.bu['Engines']['Functional 162x'].yiel = average(_.pluck(urldt, 'YIELD'));
+    return vm.bu['Engines']['Functional 162x'].oee = average(_.pluck(urldt, 'OEE'));
   });
 
   url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_Welder.json';
@@ -227,18 +232,6 @@
     return vm.bu['PMQPSK']['PLC Test'].oee = average(_.pluck(urldt, 'OEE'));
   });
 
-  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-OSA_LIV.json';
-
-  Vue.http.get(url, function(data, status, request) {
-    var urldt;
-    urldt = data;
-    vm.bu['LR4-4x25']['OSA Test'].raw = data;
-    vm.bu['LR4-4x25']['OSA Test'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
-    vm.bu['LR4-4x25']['OSA Test'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
-    vm.bu['LR4-4x25']['OSA Test'].yiel = average(_.pluck(urldt, 'YIELD'));
-    return vm.bu['LR4-4x25']['OSA Test'].oee = average(_.pluck(urldt, 'OEE'));
-  });
-
   url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_uITLA_LENS.json';
 
   Vue.http.get(url, function(data, status, request) {
@@ -273,18 +266,6 @@
     vm.bu['µITLA']['Deflector'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
     vm.bu['µITLA']['Deflector'].yiel = average(_.pluck(urldt, 'YIELD'));
     return vm.bu['µITLA']['Deflector'].oee = average(_.pluck(urldt, 'OEE'));
-  });
-
-  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_LR4-pack_Screening.json';
-
-  Vue.http.get(url, function(data, status, request) {
-    var urldt;
-    urldt = data;
-    vm.bu['LR4-4x25']['Screening'].raw = data;
-    vm.bu['LR4-4x25']['Screening'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
-    vm.bu['LR4-4x25']['Screening'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
-    vm.bu['LR4-4x25']['Screening'].yiel = average(_.pluck(urldt, 'YIELD'));
-    return vm.bu['LR4-4x25']['Screening'].oee = average(_.pluck(urldt, 'OEE'));
   });
 
 }).call(this);

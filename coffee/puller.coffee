@@ -52,9 +52,11 @@ Functions to be user by the scheduler
 ###
 
 updateHourly = ()->
+	console.log 'File updated by 1 hour'
 	callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly');
 
 updateEveryFourHours = ()->
+	console.log 'File updated by 4 hour'
 	callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/four_ours');
 
 

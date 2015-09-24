@@ -33,14 +33,40 @@
     }
   });
 
-  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_SiLens_every_x_h.json';
+  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_uITLA_LENS.json';
 
   Vue.http.get(url, function(data, status, request) {
-    window.urldt = data;
-    vm.bu.Amarillo.SiLens.avail = average(_.pluck(urldt, 'AVAILABILITY'));
-    vm.bu.Amarillo.SiLens.perf = average(_.pluck(urldt, 'PERFORMANCE'));
-    vm.bu.Amarillo.SiLens.yiel = average(_.pluck(urldt, 'YIELD'));
-    return vm.bu.Amarillo.SiLens.oee = average(_.pluck(urldt, 'OEE'));
+    var urldt;
+    urldt = data;
+    vm.bu['µITLA']['Lens Assy'].raw = data;
+    vm.bu['µITLA']['Lens Assy'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
+    vm.bu['µITLA']['Lens Assy'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
+    vm.bu['µITLA']['Lens Assy'].yiel = average(_.pluck(urldt, 'YIELD'));
+    return vm.bu['µITLA']['Lens Assy'].oee = average(_.pluck(urldt, 'OEE'));
+  });
+
+  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_uITLA_ETALON.json';
+
+  Vue.http.get(url, function(data, status, request) {
+    var urldt;
+    urldt = data;
+    vm.bu['µITLA']['Etalon'].raw = data;
+    vm.bu['µITLA']['Etalon'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
+    vm.bu['µITLA']['Etalon'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
+    vm.bu['µITLA']['Etalon'].yiel = average(_.pluck(urldt, 'YIELD'));
+    return vm.bu['µITLA']['Etalon'].oee = average(_.pluck(urldt, 'OEE'));
+  });
+
+  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_uITLA_DEFLECTOR.json';
+
+  Vue.http.get(url, function(data, status, request) {
+    var urldt;
+    urldt = data;
+    vm.bu['µITLA']['Deflector'].raw = data;
+    vm.bu['µITLA']['Deflector'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
+    vm.bu['µITLA']['Deflector'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
+    vm.bu['µITLA']['Deflector'].yiel = average(_.pluck(urldt, 'YIELD'));
+    return vm.bu['µITLA']['Deflector'].oee = average(_.pluck(urldt, 'OEE'));
   });
 
   window.vm = new Vue({
@@ -48,19 +74,19 @@
     data: {
       bu: {
         'µITLA': {
+          'Etalon': {
+            avail: 0,
+            perf: 0,
+            yiel: 0,
+            oee: 0
+          },
           'Deflector': {
             avail: 0,
             perf: 0,
             yiel: 0,
             oee: 0
           },
-          'Pre/Post Bake': {
-            avail: 0,
-            perf: 0,
-            yiel: 0,
-            oee: 0
-          },
-          'OSA Test': {
+          'Lens Assy': {
             avail: 0,
             perf: 0,
             yiel: 0,
