@@ -1,5 +1,5 @@
 (function() {
-  var callRest, checksum, counter, cron, emailjs, fs, j, k, l, logger, m, mailTest, n, o, p, rest, running, server, serviceParameters, timeoutTime, updateEveryFourHours, updateHourly, writeFile;
+  var SERVICEPARAMETERS, _, analitics, callRest, checksum, counter, cron, emailjs, fs, j, logger, mailTest, o, p, rest, running, server, timeoutTime, updateEveryFourHours, updateHourly, writeFile;
 
   rest = require('unirest');
 
@@ -11,7 +11,11 @@
 
   emailjs = require('emailjs');
 
-  serviceParameters = {
+  analitics = require('./analitics');
+
+  _ = require('underscore');
+
+  SERVICEPARAMETERS = {
     user: process.env['notificationUser'],
     password: process.env['notificationPassword'],
     host: 'smtp.gmail.com',
@@ -19,9 +23,7 @@
     port: 587
   };
 
-  console.log(serviceParameters);
-
-  server = emailjs.server.connect(serviceParameters);
+  server = emailjs.server.connect(SERVICEPARAMETERS);
 
   mailTest = function() {
     return server.send({
@@ -33,8 +35,6 @@
       return console.log(error);
     });
   };
-
-  console.log('initialized');
 
   running = false;
 
@@ -50,7 +50,7 @@
   addr {string} address to the service
    */
 
-  callRest = function(addr) {
+  callRest = function(addr, callback) {
     running = true;
     console.log('--> Making the question');
     return rest.get(addr).end(function(response) {
@@ -58,7 +58,7 @@
       running = false;
       cs = checksum(JSON.stringify(response.body));
       console.log('<-- Response getted ' + cs);
-      return writeFile('C:/apps/oee-monitor/cache/response' + cs + '.json', response.body);
+      return writeFile('C:/apps/oee-monitor/cache/' + cs + '.json', response.body);
     });
   };
 
@@ -96,8 +96,10 @@
 
   updateHourly = function() {
     console.log('File updated by 1 hour');
-    return callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly');
+    return callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly', function(data) {});
   };
+
+  updateHourly();
 
   updateEveryFourHours = function() {
     console.log('File updated by 4 hour');
@@ -109,15 +111,7 @@
   Scheduler
    */
 
-  j = cron.scheduleJob('0 30 6  * * *', updateEveryFourHours);
-
-  k = cron.scheduleJob('0 30 10 * * *', updateEveryFourHours);
-
-  l = cron.scheduleJob('0 30 14 * * *', updateEveryFourHours);
-
-  m = cron.scheduleJob('0 30 22 * * *', updateEveryFourHours);
-
-  n = cron.scheduleJob('0 30 2  * * *', updateEveryFourHours);
+  j = cron.scheduleJob('0 30 6,10,14,22,2  * * *', updateEveryFourHours);
 
   o = cron.scheduleJob('0 0 * * * *', updateHourly);
 

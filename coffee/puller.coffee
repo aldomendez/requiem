@@ -4,17 +4,17 @@ fs = require 'fs'
 cron = require 'node-schedule'
 checksum = require 'checksum'
 emailjs = require 'emailjs'
+analitics = require './analitics'
+_ = require 'underscore'
 
-serviceParameters =  {
+SERVICEPARAMETERS =  {
 	user:process.env['notificationUser']
 	password:process.env['notificationPassword']
 	host:'smtp.gmail.com'
 	tls:true
 	port:587
 }
-
-console.log serviceParameters
-server = emailjs.server.connect serviceParameters
+server = emailjs.server.connect SERVICEPARAMETERS
 
 mailTest = ()->
 	server.send {
@@ -25,9 +25,9 @@ mailTest = ()->
 	}, (error, message)->
 		console.log error
 
+# Prueba de envio de correos
 # mailTest()
 
-console.log 'initialized'
 # Inicializacion de variables
 running = false
 # El valor es en milisegundos
@@ -43,14 +43,15 @@ the answer is stored in a cache folder for debugging
 addr {string} address to the service
 ###
 
-callRest = (addr)->
+callRest = (addr,callback)->
  running = true
  console.log '--> Making the question'
  rest.get(addr).end (response)->
   running = false
   cs = checksum JSON.stringify response.body
   console.log '<-- Response getted ' + cs
-  writeFile('C:/apps/oee-monitor/cache/response' + cs + '.json', response.body)
+  writeFile('C:/apps/oee-monitor/cache/' + cs + '.json', response.body)
+  # callback JSON.parse response.body
 
 ###
 just print in the console information to know the service is alive
@@ -78,7 +79,9 @@ Functions to be user by the scheduler
 
 updateHourly = ()->
 	console.log 'File updated by 1 hour'
-	callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly');
+	callRest 'http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly',(data)->
+		# analitics.analize(data)
+updateHourly()
 
 updateEveryFourHours = ()->
 	console.log 'File updated by 4 hour'
@@ -90,11 +93,7 @@ updateEveryFourHours = ()->
 Scheduler
 ###
 
-j = cron.scheduleJob '0 30 6  * * *', updateEveryFourHours
-k = cron.scheduleJob '0 30 10 * * *', updateEveryFourHours
-l = cron.scheduleJob '0 30 14 * * *', updateEveryFourHours
-m = cron.scheduleJob '0 30 22 * * *', updateEveryFourHours
-n = cron.scheduleJob '0 30 2  * * *', updateEveryFourHours
+j = cron.scheduleJob '0 30 6,10,14,22,2  * * *', updateEveryFourHours
 o = cron.scheduleJob '0 0 * * * *', updateHourly
 p = cron.scheduleJob '*/5 * * * * *', logger
 

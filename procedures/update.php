@@ -1,21 +1,22 @@
 <?php 
 	if ($target == 'hourly') {
+
 		// every our we create a cache
 
 		// los valores corresponden a:
 		//  - el nombre del archivo que contiene el query
 		//  - el tiempo en horas que se toman para la muestra
 		$files = array(
-			array('oee_query_SiLens_every_x_h',4),
-			array('oee_query_LR4-OSA_LIV',4),
-			array('oee_query_Engines_Functional',4),
-			array('oee_query_Engines_Welder',4),
-			array('oee_query_pmqpsk_dctest',8),
-			array('oee_query_pmqpsk_plctest',4),
-			array('oee_query_uITLA_LENS',4),
-			array('oee_query_uITLA_ETALON',4),
-			array('oee_query_uITLA_DEFLECTOR',4),
-			array('oee_query_LR4-pack_Screening',4)
+			array('oee_query_SiLens_every_x_h',4)
+			// ,array('oee_query_LR4-OSA_LIV',4)
+			// ,array('oee_query_Engines_Functional',4)
+			// ,array('oee_query_Engines_Welder',4)
+			// ,array('oee_query_pmqpsk_dctest',8)
+			// ,array('oee_query_pmqpsk_plctest',4)
+			// ,array('oee_query_uITLA_LENS',4)
+			// ,array('oee_query_uITLA_ETALON',4)
+			// ,array('oee_query_uITLA_DEFLECTOR',4)
+			// ,array('oee_query_LR4-pack_Screening',4)
 		);
 		$ans = array();
 		$final = strtotime('now');
@@ -42,7 +43,7 @@
 				// throw new Exception("No arrojo datos la base de datos [".$queryName. "]", 1);
 			} else {
 				file_put_contents('cache/' . $queryName . '.json', $json);
-				array_push($ans, json_decode($json));
+				array_push($ans, array($queryName => json_decode($json)));
 			}
 		}
 		$DB->close();
