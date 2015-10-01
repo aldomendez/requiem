@@ -86,7 +86,7 @@
             yiel: 0,
             oee: 0
           },
-          'LIV Pack': {
+          'Screening': {
             avail: 0,
             perf: 0,
             yiel: 0,

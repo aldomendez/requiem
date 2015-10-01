@@ -51,7 +51,9 @@ callRest = (addr,callback)->
   cs = checksum JSON.stringify response.body
   console.log '<-- Response getted ' + cs
   writeFile('C:/apps/oee-monitor/cache/' + cs + '.json', response.body)
-  # callback JSON.parse response.body
+
+  # We handle a callback only if this callback is passed
+  if callback? then callback JSON.parse response.body
 
 ###
 just print in the console information to know the service is alive
@@ -77,11 +79,17 @@ writeFile = (address, content)->
 Functions to be user by the scheduler
 ###
 
-updateHourly = ()->
+testService = ()->
 	console.log 'File updated by 1 hour'
 	callRest 'http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly',(data)->
-		# analitics.analize(data)
-updateHourly()
+		analitics.analize(data)
+		
+testService()
+
+updateHourly = ()->
+	console.log 'File updated by 1 hour'
+	callRest 'http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly'
+
 
 updateEveryFourHours = ()->
 	console.log 'File updated by 4 hour'

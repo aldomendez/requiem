@@ -57,7 +57,7 @@
                     {{$data.yiel | perc}}%
                   </div>
                   <div class="label">
-                    Effectiveness
+                    Quality
                   </div>
                 </div>
               </td>

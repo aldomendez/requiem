@@ -1,10 +1,10 @@
-select rownum+(select max(id) from oee_master2) id,':inicio' s_start_dt, ':final' s_end_dt, a.* , (availability * performance * yield) oee from (
+select rownum+(select max(id) from oee_master2) id,'201509241615' s_start_dt, '201509251454' s_end_dt, a.* , (availability * performance * yield) oee from (
 
     select 
         bu,depto, regexp_replace(listagg(product ,',') within group (order by product),'([^,]+)(,\1)+','\1') product, process, system_id,
-        round((to_date(':final','yyyymmddhh24mi') - to_date(':inicio','yyyymmddhh24mi'))*24*60,0) SAMPLE_TIME_SPAN,
+        round((to_date('201509251454','yyyymmddhh24mi') - to_date('201509241615','yyyymmddhh24mi'))*24*60,0) SAMPLE_TIME_SPAN,
         round(sum(total_production_time),0) total_production_time, sum(build_qty) build_qty, sum(avg_ct) avg_ct, 
-        sum(total_production_time)/round((to_date(':final','yyyymmddhh24mi') - to_date(':inicio','yyyymmddhh24mi'))*24*60,0) availability
+        sum(total_production_time)/round((to_date('201509251454','yyyymmddhh24mi') - to_date('201509241615','yyyymmddhh24mi'))*24*60,0) availability
         ,sum(perfstp1)/sum(total_production_time)  performance,sum(good_pieces)/sum(build_qty) yield
         from (
     
@@ -27,15 +27,15 @@ select rownum+(select max(id) from oee_master2) id,':inicio' s_start_dt, ':final
               
         from (select system_id system_id,serial_num serial_num, pass_fail,completion_date process_date,
         step_name,(completion_date - process_date)*24*60 cycle_time from 
-        (phase2.PROCESS_EXECUTION@mxoptix)a where process_date between to_date(':inicio','yyyymmddhh24mi') 
-          and to_date(':final','yyyymmddhh24mi')
+        (phase2.PROCESS_EXECUTION@mxoptix)a where process_date between to_date('201509241615','yyyymmddhh24mi') 
+          and to_date('201509251454','yyyymmddhh24mi')
           and system_id in (
           'CYTEST701','CYTEST702','CYTEST1201','CYTEST1202'
 --            'CYTEST1201'
           ))a left join apogee.oee_machine_catalog b on system_id=machine 
         where process_date between 
-          to_date(':inicio','yyyymmddhh24mi') and 
-          to_date(':final','yyyymmddhh24mi')
+          to_date('201509241615','yyyymmddhh24mi') and 
+          to_date('201509251454','yyyymmddhh24mi')
           -- esta es la parte que hace la separacion por codigos y les asigna su tiempo de ciclo
           and case when a.step_name in (select product from oee_machine_catalog where process = 'LIV' group by product) then a.step_name else 'all' end  = b.product
         group by system_id, bu_id, depto, process, machine,ideal_cycle_time

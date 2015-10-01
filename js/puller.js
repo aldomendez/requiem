@@ -1,5 +1,5 @@
 (function() {
-  var SERVICEPARAMETERS, _, analitics, callRest, checksum, counter, cron, emailjs, fs, j, logger, mailTest, o, p, rest, running, server, timeoutTime, updateEveryFourHours, updateHourly, writeFile;
+  var SERVICEPARAMETERS, _, analitics, callRest, checksum, counter, cron, emailjs, fs, j, logger, mailTest, o, p, rest, running, server, testService, timeoutTime, updateEveryFourHours, updateHourly, writeFile;
 
   rest = require('unirest');
 
@@ -58,7 +58,10 @@
       running = false;
       cs = checksum(JSON.stringify(response.body));
       console.log('<-- Response getted ' + cs);
-      return writeFile('C:/apps/oee-monitor/cache/' + cs + '.json', response.body);
+      writeFile('C:/apps/oee-monitor/cache/' + cs + '.json', response.body);
+      if (callback != null) {
+        return callback(JSON.parse(response.body));
+      }
     });
   };
 
@@ -94,12 +97,19 @@
   Functions to be user by the scheduler
    */
 
-  updateHourly = function() {
+  testService = function() {
     console.log('File updated by 1 hour');
-    return callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly', function(data) {});
+    return callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly', function(data) {
+      return analitics.analize(data);
+    });
   };
 
-  updateHourly();
+  testService();
+
+  updateHourly = function() {
+    console.log('File updated by 1 hour');
+    return callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly');
+  };
 
   updateEveryFourHours = function() {
     console.log('File updated by 4 hour');
