@@ -1,5 +1,5 @@
 (function() {
-  var SERVICEPARAMETERS, _, analitics, callRest, checksum, counter, cron, emailjs, fs, j, logger, mailTest, o, p, rest, running, server, testService, timeoutTime, updateEveryFourHours, updateHourly, writeFile;
+  var SERVICEPARAMETERS, _, analitics, callRest, checksum, counter, cron, emailjs, fs, j, logger, mailTest, o, rest, running, server, testService, timeoutTime, updateEveryFourHours, updateHourly, writeFile;
 
   rest = require('unirest');
 
@@ -71,7 +71,9 @@
    */
 
   logger = function() {
-    return console.log('Still alive --> ' + counter++);
+    var dt;
+    dt = new Date();
+    return console.log("Still alive -->  " + (counter++) + " " + (dt.toString()));
   };
 
 
@@ -104,8 +106,6 @@
     });
   };
 
-  testService();
-
   updateHourly = function() {
     console.log('File updated by 1 hour');
     return callRest('http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly');
@@ -124,7 +124,5 @@
   j = cron.scheduleJob('0 30 6,10,14,22,2  * * *', updateEveryFourHours);
 
   o = cron.scheduleJob('0 0 * * * *', updateHourly);
-
-  p = cron.scheduleJob('*/5 * * * * *', logger);
 
 }).call(this);

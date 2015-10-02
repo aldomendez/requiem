@@ -7,8 +7,13 @@ select bu_id bu,depto,product,process,display_name system_id,round((to_date(':fi
     sum(cycle_time)/round((to_date(':final','yyyy-mm-dd hh24:mi') - to_date(':inicio','yyyy-mm-dd hh24:mi'))*24*60,0) availability,
     6/(sum(cycle_time) /count(serial_num)) Performance,
     sum(case when PASS_FAIL = 'PASS' then 1 else 0 end)/count(serial_num) Yield
-from (select facility system_id,device serial_num,device_fm pass_fail,test_dt process_date, (end_dt- test_dt)*24*60 cycle_time,state from 
-(dare_pkg.eml10gb_prod@prodmx)a where test_dt between to_date(':inicio','yyyy-mm-dd hh24:mi') and to_date(':final','yyyy-mm-dd hh24:mi')) left join apogee.oee_machine_catalog on system_id=machine 
+from (
+  select facility system_id,device serial_num,device_fm pass_fail,test_dt process_date, (end_dt- test_dt)*24*60 cycle_time,state from 
+  dare_pkg.eml10gb_prod@prodmx a where test_dt between to_date(':inicio','yyyy-mm-dd hh24:mi') and to_date(':final','yyyy-mm-dd hh24:mi')
+  union all select facility system_id,device serial_num,device_fm pass_fail,test_dt process_date, (end_dt- test_dt)*24*60 cycle_time,state from 
+  dare_pkg.eml10gb_stan@prodmx a where test_dt between to_date(':inicio','yyyy-mm-dd hh24:mi') and to_date(':final','yyyy-mm-dd hh24:mi')
+
+) left join apogee.oee_machine_catalog on system_id=machine 
 where process_date between 
   to_date(':inicio','yyyy-mm-dd hh24:mi') and 
   to_date(':final','yyyy-mm-dd hh24:mi') and

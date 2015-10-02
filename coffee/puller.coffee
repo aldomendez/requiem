@@ -59,7 +59,8 @@ callRest = (addr,callback)->
 just print in the console information to know the service is alive
 ###
 logger = ->
- 	console.log 'Still alive --> ' + counter++
+	dt = new Date()
+	console.log "Still alive -->  #{counter++} #{dt.toString()}"
 
 
 ###
@@ -83,8 +84,8 @@ testService = ()->
 	console.log 'File updated by 1 hour'
 	callRest 'http://wmatvmlr401/lr4/oee-monitor/index.php/update/hourly',(data)->
 		analitics.analize(data)
-		
-testService()
+
+# testService()
 
 updateHourly = ()->
 	console.log 'File updated by 1 hour'
@@ -103,7 +104,7 @@ Scheduler
 
 j = cron.scheduleJob '0 30 6,10,14,22,2  * * *', updateEveryFourHours
 o = cron.scheduleJob '0 0 * * * *', updateHourly
-p = cron.scheduleJob '*/5 * * * * *', logger
+# p = cron.scheduleJob '*/5 * * * * *', logger
 
 
 

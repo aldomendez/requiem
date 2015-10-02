@@ -116,6 +116,13 @@
             yiel: 0,
             oee: 0
           },
+          'LIV': {
+            raw: [],
+            avail: 0,
+            perf: 0,
+            yiel: 0,
+            oee: 0
+          },
           'Functional 162x': {
             raw: [],
             avail: 0,
@@ -206,6 +213,18 @@
     vm.bu['Engines']['Welder'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
     vm.bu['Engines']['Welder'].yiel = average(_.pluck(urldt, 'YIELD'));
     return vm.bu['Engines']['Welder'].oee = average(_.pluck(urldt, 'OEE'));
+  });
+
+  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_insert_Engines_LIV.json';
+
+  Vue.http.get(url, function(data, status, request) {
+    var urldt;
+    urldt = data;
+    vm.bu['Engines']['LIV'].raw = data;
+    vm.bu['Engines']['LIV'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
+    vm.bu['Engines']['LIV'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
+    vm.bu['Engines']['LIV'].yiel = average(_.pluck(urldt, 'YIELD'));
+    return vm.bu['Engines']['LIV'].oee = average(_.pluck(urldt, 'OEE'));
   });
 
   url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_pmqpsk_dctest.json';
