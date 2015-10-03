@@ -2,7 +2,7 @@ sum = (arr) -> arr.reduce (a,b)-> +a + +b
 average = (arr)-> sum(arr)/ (arr.length)
 Vue.filter 'perc', (val)->
 	perc = Math.round(val*100)
-	# if perc > 100 then return 100 else return perc
+	if perc > 100 then return 100 else return perc
 Vue.filter 'color', (val)->
 	if 0 < val < .7 then return 'red'
 	if .7 <= val < .9 then return 'yellow'

@@ -13,7 +13,12 @@
 
   Vue.filter('perc', function(val) {
     var perc;
-    return perc = Math.round(val * 100);
+    perc = Math.round(val * 100);
+    if (perc > 100) {
+      return 100;
+    } else {
+      return perc;
+    }
   });
 
   Vue.filter('color', function(val) {

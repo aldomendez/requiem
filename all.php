@@ -23,6 +23,11 @@
             <a class="item" href="http://wmatvmlr401/lr4/oee-monitor/index.php">
               <i class="database icon"></i> OEE Dashboard
             </a>
+              <div class="right menu">
+                <a class="item" href="http://wmatvmlr401/lr4/oee-monitor/index.php/manualUpdate">
+                  <i class="write icon"></i>
+                </a>
+              </div>
           </div>
         </div>
       </div>

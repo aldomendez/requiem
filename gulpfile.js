@@ -55,7 +55,7 @@ gulp.task('watch', function () {
   }).on('change', function (event) {
      copyAndReload(event);
   });  
-  gulp.watch(['**/*.php'], function (event) {
+  gulp.watch(['procedures/**.php','*.php'], function (event) {
   }).on('change', function (event) {
      copyAndReload(event);
   });  
