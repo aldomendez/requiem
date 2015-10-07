@@ -7,12 +7,12 @@ $app = new Slim();
 $app->get('/', 'index' );
 $app->get('/new', 'new_index' );
 $app->get('/manual_input/:machine/:start', 'get_interval_info' );
-$app->post('/manual_input', 'post_interval_info' );
 $app->get('/manualUpdate', 'manual_update' );
 $app->get('/bu/:bu', 'single_bu_score' );
 $app->get('/update/:target', 'updateTarget');
 $app->get('/get/:depto/:product/:process', 'returnOEEDataByProcess');
 
+$app->post('/manual_input', 'post_interval_info' );
 
 
 function index() {
