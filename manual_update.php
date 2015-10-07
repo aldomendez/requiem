@@ -44,19 +44,21 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-repeat='machine'>
-                    <td v-text="start |to finish"></td>
+                  <tr v-repeat='entry in machine'>
+                    <td v-text="entry.start |to entry.finish"></td>
                     <td>
                       <div class="ui input fluid">
-                        <input type="text" placeholder="" v-model="total">
+                        <input type="text" placeholder="" v-show="entry.editable" v-model="entry.build_qty">
+                        <span v-show="!entry.editable">{{entry.build_qty}}</span>
                       </div>
                     </td>
                     <td>
                       <div class="ui input fluid">
-                        <input type="text" placeholder="" v-model="buenas">
+                        <input type="text" placeholder="" v-show="entry.editable" v-model="entry.good_qty">
+                        <span v-show="!entry.editable">{{entry.good_qty}}</span>
                       </div>
                     </td>
-                    <td><a href="#" v-on="click:saveIntervalContents($index)">Guardar</a></td>
+                    <td><a href="#" v-show="entry.editable"  v-on="click:saveIntervalContents($event, $index, entry)">Guardar</a></td>
                   </tr>
                 </tbody>
               </table>

@@ -6,7 +6,8 @@ $app = new Slim();
 
 $app->get('/', 'index' );
 $app->get('/new', 'new_index' );
-$app->get('/manual_input/:machine/:total_qty/:good_qty/:start', 'get_interval_info' );
+$app->get('/manual_input/:machine/:start', 'get_interval_info' );
+$app->post('/manual_input', 'post_interval_info' );
 $app->get('/manualUpdate', 'manual_update' );
 $app->get('/bu/:bu', 'single_bu_score' );
 $app->get('/update/:target', 'updateTarget');
@@ -19,7 +20,12 @@ function index() {
     include "all.php";
 }
 
-function get_interval_info($machine, $total_qty, $good_qty, $start ) {
+function post_interval_info( ) {
+	global $app;
+	include './procedures/post_interval_info.php';
+}
+
+function get_interval_info($machine, $start ) {
 	
 	include './procedures/get_interval_info.php';
 }

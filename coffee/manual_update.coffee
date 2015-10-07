@@ -6,6 +6,8 @@ date = (dt)->
 	return dt.getDate()
 hhmm = (dt)->
 	return "#{dt.getHours()}:#{dt.getMinutes()}"
+yyyymmddhh24mm = (dt)->
+	return "#{dt.getFullYear()}-#{dt.getMonth()+1}-#{dt.getDate()} #{dt.getHours()}:#{dt.getMinutes()}"
 
 Vue.filter 'to',(start, finish)->
 	if start.getDate() is finish.getDate()
@@ -35,7 +37,7 @@ intervalsFactory = ()->
 
 
 # console.log intervals
-recordsInDatabase = Vue.resource('http://wmatvmlr401/lr4/oee-monitor/index.php/manual_input/:machine/:total_qty/:good_qty/:start')
+recordsInDatabase = Vue.resource('http://wmatvmlr401/lr4/oee-monitor/index.php/manual_input/:machine/:start')
 
 
 
@@ -46,20 +48,39 @@ window.vm = new Vue {
 			{name:'DR1', process:'Deflector - Ensamble'},
 			{name:'DR2', process:'Deflector - Verificacion'},
 			{name:'EN2', process:'Etalon'}].map (machine)->
-			console.log machine
-			return _.extend(intervalsFactory()).map (el)->
-				_.extend el, {
-					buenas:0
-					total:0
+			_.extend(intervalsFactory()).map (el)->
+				content = _.extend el, {
+					good_qty:''
+					build_qty:''
 					name:machine.name
 					process:machine.process
+					editable : true
 				}
+				recordsInDatabase.get({machine:machine.name,start:(yyyymmddhh24mm el.start)}, (item)=>
+					if item.error then return false
+					console.log  item
+					content.good_qty = item.good_qty
+					content.build_qty = item.build_qty
+					content.editable = false
+				).error (data,status)->
+					console.log data
+					console.log status
+				return content
 	}
 	methods:{
 		returnToReferer:(a,b)->
 			window.location.href = a
-		saveIntervalContents:(a)->
-			console.log a
+		saveIntervalContents:(e, a,machine)->
+			e.preventDefault()
+			machine.editable = false
+			recordsInDatabase.save {
+				machine:machine.name
+				build_qty:machine.build_qty
+				good_qty:machine.good_qty
+				start:yyyymmddhh24mm(machine.start)
+			},(data, status)->
+				console.log data
+				console.log status
 	}
 
 }

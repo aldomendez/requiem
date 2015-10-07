@@ -1,5 +1,5 @@
 (function() {
-  var capitalize, date, hhmm, intervalsFactory, month, recordsInDatabase;
+  var capitalize, date, hhmm, intervalsFactory, month, recordsInDatabase, yyyymmddhh24mm;
 
   capitalize = function(str) {
     return str.split('').map(function(el, i) {
@@ -21,6 +21,10 @@
 
   hhmm = function(dt) {
     return (dt.getHours()) + ":" + (dt.getMinutes());
+  };
+
+  yyyymmddhh24mm = function(dt) {
+    return (dt.getFullYear()) + "-" + (dt.getMonth() + 1) + "-" + (dt.getDate()) + " " + (dt.getHours()) + ":" + (dt.getMinutes());
   };
 
   Vue.filter('to', function(start, finish) {
@@ -59,7 +63,7 @@
     });
   };
 
-  recordsInDatabase = Vue.resource('http://wmatvmlr401/lr4/oee-monitor/index.php/manual_input/:machine/:total_qty/:good_qty/:start');
+  recordsInDatabase = Vue.resource('http://wmatvmlr401/lr4/oee-monitor/index.php/manual_input/:machine/:start');
 
   window.vm = new Vue({
     el: '#template',
@@ -76,14 +80,33 @@
           process: 'Etalon'
         }
       ].map(function(machine) {
-        console.log(machine);
         return _.extend(intervalsFactory()).map(function(el) {
-          return _.extend(el, {
-            buenas: 0,
-            total: 0,
+          var content;
+          content = _.extend(el, {
+            good_qty: '',
+            build_qty: '',
             name: machine.name,
-            process: machine.process
+            process: machine.process,
+            editable: true
           });
+          recordsInDatabase.get({
+            machine: machine.name,
+            start: yyyymmddhh24mm(el.start)
+          }, (function(_this) {
+            return function(item) {
+              if (item.error) {
+                return false;
+              }
+              console.log(item);
+              content.good_qty = item.good_qty;
+              content.build_qty = item.build_qty;
+              return content.editable = false;
+            };
+          })(this)).error(function(data, status) {
+            console.log(data);
+            return console.log(status);
+          });
+          return content;
         });
       })
     },
@@ -91,8 +114,18 @@
       returnToReferer: function(a, b) {
         return window.location.href = a;
       },
-      saveIntervalContents: function(a) {
-        return console.log(a);
+      saveIntervalContents: function(e, a, machine) {
+        e.preventDefault();
+        machine.editable = false;
+        return recordsInDatabase.save({
+          machine: machine.name,
+          build_qty: machine.build_qty,
+          good_qty: machine.good_qty,
+          start: yyyymmddhh24mm(machine.start)
+        }, function(data, status) {
+          console.log(data);
+          return console.log(status);
+        });
       }
     }
   });

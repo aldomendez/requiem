@@ -24,15 +24,15 @@ to_date(':final','yyyy-mm-dd hh24:mi') s_end_dt,
 	':bu_id',
 	':depto',
 	':product',
-	':process',
+	(select process from OEE_MACHINE_CATALOG where machine = ':machine' and product = 'all'),
 	':machine',
 	':sample_time_span',
-	(select ideal_cycle_time from OEE_MACHINE_CATALOG where machine = ':machine' and product = 'all') * :total_qty, -- total production time
-	':total_qty',
+	(select ideal_cycle_time from OEE_MACHINE_CATALOG where machine = ':machine' and product = 'all') * :build_qty, -- total production time
+	':build_qty',
 	(select ideal_cycle_time from OEE_MACHINE_CATALOG where machine = ':machine' and product = 'all'), -- avg_ct
-	((select ideal_cycle_time from OEE_MACHINE_CATALOG where machine = ':machine' and product = 'all')*23)/:sample_time_span, -- availability
-	case when 23 < 0 then 0 else 1 end, -- performance (always 1 when we have devices, no way to calculate further)
-	:yield, -- in php we manage to change this to 0 or the explicit operation $good_qty/$total_qty
-	(((select ideal_cycle_time from OEE_MACHINE_CATALOG where machine = ':machine' and product = 'all')*23)/240)*
-	(case when 23 < 0 then 0 else 1 end) * :yield
+	((select ideal_cycle_time from OEE_MACHINE_CATALOG where machine = ':machine' and product = 'all')*:build_qty)/:sample_time_span, -- availability
+	case when :build_qty < 0 then 0 else 1 end, -- performance (always 1 when we have devices, no way to calculate further)
+	:yield, -- in php we manage to change this to 0 or the explicit operation $good_qty/$build_qty
+	(((select ideal_cycle_time from OEE_MACHINE_CATALOG where machine = ':machine' and product = 'all')*:build_qty)/:sample_time_span)*
+	(case when :build_qty < 0 then 0 else 1 end) * :yield
 from dual
