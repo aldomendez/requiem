@@ -14,8 +14,8 @@
 			,array('oee_query_pmqpsk_dctest',8)
 			,array('oee_query_pmqpsk_plctest',4)
 			,array('oee_query_uITLA_LENS',4)
-			,array('oee_query_uITLA_ETALON',4)
-			,array('oee_query_uITLA_DEFLECTOR',4)
+			// ,array('oee_query_uITLA_ETALON',4)
+			// ,array('oee_query_uITLA_DEFLECTOR',4)
 			,array('oee_query_LR4-pack_Screening',4)
 			,array('oee_insert_Engines_LIV',4)
 		);
