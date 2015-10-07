@@ -1,5 +1,5 @@
 (function() {
-  var capitalize, date, hhmm, hours, intervals, month, now, util, x;
+  var capitalize, date, hhmm, intervalsFactory, month, recordsInDatabase;
 
   capitalize = function(str) {
     return str.split('').map(function(el, i) {
@@ -12,7 +12,7 @@
   };
 
   month = function(dt) {
-    return "Ene Feb Mar Abr May Jun Jul Ago Sep Oct Nov Dic".split(' ')[dt.getMonth()];
+    return "ene feb mar abr may jun jul ago sep oct nov dic".split(' ')[dt.getMonth()];
   };
 
   date = function(dt) {
@@ -23,9 +23,7 @@
     return (dt.getHours()) + ":" + (dt.getMinutes());
   };
 
-  Vue.filter('range', function(val, start, finish) {
-    console.log(start);
-    console.log(finish);
+  Vue.filter('to', function(start, finish) {
     if (start.getDate() === finish.getDate()) {
       return (capitalize(month(start))) + " " + (date(start)) + " " + (hhmm(start)) + "-" + (hhmm(finish));
     } else {
@@ -33,42 +31,61 @@
     }
   });
 
-  now = new Date();
 
-  hours = (function() {
-    var j, results;
-    results = [];
-    for (x = j = 0; j <= 48; x = j += 4) {
-      results.push(new Date(now.getFullYear(), now.getMonth(), now.getDate(), x + 2 - 24, 30));
-    }
-    return results;
-  })();
+  /*
+  Calculates the intervals we will work at
+   */
 
-  hours = _.filter(hours, function(el) {
-    return el < now;
-  });
-
-  hours.splice(0, hours.length - 7);
-
-  intervals = [0, 1, 2, 3, 4, 5].map(function(el, i, arr) {
-    return {
-      start: hours[i],
-      finish: hours[i + 1],
-      total: 0,
-      buenas: 0
-    };
-  });
-
-  console.log(intervals);
-
-  util = {
-    packId: Vue.resource('http://wmatvmlr401/lr4/oee-monitor/index.php/getIntervalInfo')
+  intervalsFactory = function() {
+    var hours, intervals, now, x;
+    now = new Date();
+    hours = (function() {
+      var j, results;
+      results = [];
+      for (x = j = 0; j <= 48; x = j += 4) {
+        results.push(new Date(now.getFullYear(), now.getMonth(), now.getDate(), x + 2 - 24, 30));
+      }
+      return results;
+    })();
+    hours = _.filter(hours, function(el) {
+      return el < now;
+    });
+    hours.splice(0, hours.length - 7);
+    return intervals = [0, 1, 2, 3, 4, 5].map(function(el, i, arr) {
+      return {
+        start: hours[i],
+        finish: hours[i + 1]
+      };
+    });
   };
+
+  recordsInDatabase = Vue.resource('http://wmatvmlr401/lr4/oee-monitor/index.php/manual_input/:machine/:total_qty/:good_qty/:start');
 
   window.vm = new Vue({
     el: '#template',
     data: {
-      intervals: intervals
+      machines: [
+        {
+          name: 'DR1',
+          process: 'Deflector - Ensamble'
+        }, {
+          name: 'DR2',
+          process: 'Deflector - Verificacion'
+        }, {
+          name: 'EN2',
+          process: 'Etalon'
+        }
+      ].map(function(machine) {
+        console.log(machine);
+        return _.extend(intervalsFactory()).map(function(el) {
+          return _.extend(el, {
+            buenas: 0,
+            total: 0,
+            name: machine.name,
+            process: machine.process
+          });
+        });
+      })
     },
     methods: {
       returnToReferer: function(a, b) {

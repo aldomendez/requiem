@@ -6,7 +6,7 @@ $app = new Slim();
 
 $app->get('/', 'index' );
 $app->get('/new', 'new_index' );
-$app->get('/getIntervalInfo', 'get_interval_info' );
+$app->get('/manual_input/:machine/:total_qty/:good_qty/:start', 'get_interval_info' );
 $app->get('/manualUpdate', 'manual_update' );
 $app->get('/bu/:bu', 'single_bu_score' );
 $app->get('/update/:target', 'updateTarget');
@@ -14,13 +14,13 @@ $app->get('/get/:depto/:product/:process', 'returnOEEDataByProcess');
 
 
 
-function index()
-{
+function index() {
+    
     include "all.php";
 }
 
-function get_interval_info()
-{
+function get_interval_info($machine, $total_qty, $good_qty, $start ) {
+	
 	include './procedures/get_interval_info.php';
 }
 

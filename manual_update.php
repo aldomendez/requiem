@@ -21,7 +21,7 @@
               Avago
             </a>
             <a class="item" href="http://wmatvmlr401/lr4/oee-monitor/index.php" alt="Return to main site">
-              <i class="database icon"></i> OEE Manual input
+              <i class="database icon"></i> Overall Equipment Effectiveness - Manual input
             </a>
           </div>
         </div>
@@ -32,44 +32,47 @@
               <i class="left arrow icon"></i>
               return
             </button>
-            <table class="ui celled large compact selectable table">
-              <thead>
-                <tr>
-                  <th>Intervalo</th>
-                  <th>Total de piezas procesadas</th>
-                  <th>Cantidad de piezas buenas</th>
-                  <th class="collapsing"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-repeat='intervals'>
-                  <td v-text="$value|range start finish"></td>
-                  <td>
-                    <div class="ui input fluid">
-                      <input type="text" placeholder="" v-model="total">
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ui input fluid">
-                      <input type="text" placeholder="" v-model="buenas">
-                    </div>
-                  </td>
-                  <td><a href="#" v-on="click:saveIntervalContents($index)">Guardar</a></td>
-                </tr>
-              </tbody>
-            </table>
+            <template v-repeat="machine in machines">
+              <h1>{{machine[0].name}} - {{machine[0].process}}</h1>
+              <table class="ui celled large compact selectable table">
+                <thead>
+                  <tr>
+                    <th>Intervalo</th>
+                    <th>Total de piezas procesadas</th>
+                    <th>Cantidad de piezas buenas</th>
+                    <th class="collapsing"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-repeat='machine'>
+                    <td v-text="start |to finish"></td>
+                    <td>
+                      <div class="ui input fluid">
+                        <input type="text" placeholder="" v-model="total">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="ui input fluid">
+                        <input type="text" placeholder="" v-model="buenas">
+                      </div>
+                    </td>
+                    <td><a href="#" v-on="click:saveIntervalContents($index)">Guardar</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </template>
           </div>
         </div>
 
         
 
-<pre>{{intervals|json}}</pre>
+<!-- <pre>{{machines|json}}</pre> -->
 
 
     </template>
   </div>
   <script src="http://wmatvmlr401/lr4/jsLib/underscore/1.8.3/underscore.js"></script>
-  <script src="http://wmatvmlr401/lr4/jsLib/moment/2.10.6/moment.js"></script>
+  <!-- // <script src="http://wmatvmlr401/lr4/jsLib/moment/2.10.6/moment.js"></script> -->
   <script src="http://wmatvmlr401/lr4/jsLib/vue/0.12.9/vue.js"></script>
   <script src="http://wmatvmlr401/lr4/jsLib/vue-resource/0.1.11/vue-resource.js"></script>
   <script src="http://wmatvmlr401/lr4/oee-monitor/js/manual_update.js"></script>

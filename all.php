@@ -21,7 +21,7 @@
               Avago
             </a>
             <a class="item" href="http://wmatvmlr401/lr4/oee-monitor/index.php">
-              <i class="database icon"></i> OEE Dashboard
+              <i class="database icon"></i> Overall Equipment Effectiveness Dashboard
             </a>
               <div class="right menu">
                 <a class="item" href="http://wmatvmlr401/lr4/oee-monitor/index.php/manualUpdate">
