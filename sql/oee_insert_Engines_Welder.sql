@@ -1,3 +1,4 @@
+insert into oee_master2 (ID,s_start_dt,s_end_dt,BU,DEPTO,PRODUCT,PROCESS,MACHINE,SAMPLE_TIME_SPAN,total_production_time,build_qty,AVG_CT, AVAIL, PERF, YIELD, oee)
 select rownum+(select max(id) from oee_master2) id,to_date('2015-09-07 06:30','yyyy-mm-dd hh24:mi') s_start_dt, to_date('2015-09-07 18:30','yyyy-mm-dd hh24:mi')
 s_end_dt, a.* , (availability * performance * yield) oee from ( 
 select bu_id bu,depto,product,process,system_id,round((to_date('2015-09-07 18:30','yyyy-mm-dd hh24:mi') - to_date('2015-09-07 06:30','yyyy-mm-dd hh24:mi'))*24*60,0) SAMPLE_TIME_SPAN,
