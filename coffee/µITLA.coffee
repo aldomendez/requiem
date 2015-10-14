@@ -6,8 +6,8 @@ Vue.filter 'perc', (val)->
 	if perc > 100 then return 100 else return perc
 Vue.filter 'color', (val)->
 	if 0 < val < .7 then return 'red'
-	if .7 < val < .9 then return 'yellow'
-	if .9 < val <= 1 then return 'green'
+	if .7 <= val < .9 then return 'yellow'
+	if .9 <= val <= 1 then return 'green'
 
 
 url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_uITLA_LENS.json'

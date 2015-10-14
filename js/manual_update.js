@@ -1,5 +1,5 @@
 (function() {
-  var capitalize, date, hhmm, intervalsFactory, month, recordsInDatabase, yyyymmddhh24mm;
+  var capitalize, date, hhmm, intervals, intervalsFactory, month, recordsInDatabase, yyyymmddhh24mm;
 
   capitalize = function(str) {
     return str.split('').map(function(el, i) {
@@ -63,6 +63,8 @@
     });
   };
 
+  intervals = intervalsFactory();
+
   recordsInDatabase = Vue.resource('http://wmatvmlr401/lr4/oee-monitor/index.php/manual_input/:machine/:start');
 
   window.vm = new Vue({
@@ -80,7 +82,9 @@
           process: 'Etalon'
         }
       ].map(function(machine) {
-        return _.extend(intervalsFactory()).map(function(el) {
+        var intervalsClone;
+        intervalsClone = [];
+        _.extend(intervalsClone, intervals).map(function(el) {
           var content;
           content = _.extend(el, {
             good_qty: '',
@@ -108,6 +112,7 @@
           });
           return content;
         });
+        return intervalsClone;
       })
     },
     methods: {

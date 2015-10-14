@@ -18,6 +18,7 @@
 			// ,array('oee_query_uITLA_DEFLECTOR',4)
 			,array('oee_query_LR4-pack_Screening',4)
 			,array('oee_insert_Engines_LIV',4)
+			,array('oee_query_Engines_10Gb_25Gb',4)
 		);
 		$ans = array();
 		$final = strtotime('now');

@@ -114,6 +114,13 @@
           }
         },
         'Engines': {
+          'OSAS': {
+            raw: [],
+            avail: 0,
+            perf: 0,
+            yiel: 0,
+            oee: 0
+          },
           'Welder': {
             raw: [],
             avail: 0,
@@ -206,6 +213,18 @@
     vm.bu['Engines']['Functional 162x'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
     vm.bu['Engines']['Functional 162x'].yiel = average(_.pluck(urldt, 'YIELD'));
     return vm.bu['Engines']['Functional 162x'].oee = average(_.pluck(urldt, 'OEE'));
+  });
+
+  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_10Gb_25Gb.json';
+
+  Vue.http.get(url, function(data, status, request) {
+    var urldt;
+    urldt = data;
+    vm.bu['Engines']['OSAS'].raw = data;
+    vm.bu['Engines']['OSAS'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
+    vm.bu['Engines']['OSAS'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
+    vm.bu['Engines']['OSAS'].yiel = average(_.pluck(urldt, 'YIELD'));
+    return vm.bu['Engines']['OSAS'].oee = average(_.pluck(urldt, 'OEE'));
   });
 
   url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_Welder.json';

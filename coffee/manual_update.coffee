@@ -35,6 +35,7 @@ intervalsFactory = ()->
 	intervals = [0..5].map (el,i,arr)->
 		{start:hours[i],finish:hours[i+1]}
 
+intervals = intervalsFactory() 
 
 # console.log intervals
 recordsInDatabase = Vue.resource('http://wmatvmlr401/lr4/oee-monitor/index.php/manual_input/:machine/:start')
@@ -48,24 +49,26 @@ window.vm = new Vue {
 			{name:'DR1', process:'Deflector - Ensamble'},
 			{name:'DR2', process:'Deflector - Verificacion'},
 			{name:'EN2', process:'Etalon'}].map (machine)->
-			_.extend(intervalsFactory()).map (el)->
-				content = _.extend el, {
-					good_qty:''
-					build_qty:''
-					name:machine.name
-					process:machine.process
-					editable : true
-				}
-				recordsInDatabase.get({machine:machine.name,start:(yyyymmddhh24mm el.start)}, (item)=>
-					if item.error then return false
-					console.log  item
-					content.good_qty = item.good_qty
-					content.build_qty = item.build_qty
-					content.editable = false
-				).error (data,status)->
-					console.log data
-					console.log status
-				return content
+				intervalsClone =[]
+				_.extend(intervalsClone, intervals).map (el)->
+					content = _.extend el, {
+						good_qty:''
+						build_qty:''
+						name:machine.name
+						process:machine.process
+						editable : true
+					}
+					recordsInDatabase.get({machine:machine.name,start:(yyyymmddhh24mm el.start)}, (item)=>
+						if item.error then return false
+						console.log  item
+						content.good_qty = item.good_qty
+						content.build_qty = item.build_qty
+						content.editable = false
+					).error (data,status)->
+						console.log data
+						console.log status
+					return content
+				return intervalsClone
 	}
 	methods:{
 		returnToReferer:(a,b)->
