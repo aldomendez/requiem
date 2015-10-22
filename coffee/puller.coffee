@@ -5,7 +5,10 @@ cron = require 'node-schedule'
 checksum = require 'checksum'
 emailjs = require 'emailjs'
 analitics = require './analitics'
+dateFormat = require('dateformat');
 _ = require 'underscore'
+
+console.log "Awaken: " + dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss TT")
 
 SERVICEPARAMETERS =  {
 	user:process.env['notificationUser']
@@ -45,6 +48,7 @@ addr {string} address to the service
 
 callRest = (addr,callback)->
  running = true
+ console.log "Calling home: " + dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss TT")
  console.log '--> Making the question'
  rest.get(addr).end (response)->
   running = false
@@ -102,7 +106,13 @@ updateEveryFourHours = ()->
 Scheduler
 ###
 
-j = cron.scheduleJob '0 30 6,10,14,22,2  * * *', updateEveryFourHours
+j = cron.scheduleJob '0 30 6  * * *', updateEveryFourHours
+j = cron.scheduleJob '0 30 10  * * *', updateEveryFourHours
+j = cron.scheduleJob '0 30 14  * * *', updateEveryFourHours
+j = cron.scheduleJob '0 30 18  * * *', updateEveryFourHours
+j = cron.scheduleJob '0 30 22  * * *', updateEveryFourHours
+j = cron.scheduleJob '0 30 2  * * *', updateEveryFourHours
+# j = cron.scheduleJob '0 30 2,6,10,14,18,22  * * *', updateEveryFourHours
 o = cron.scheduleJob '0 0 * * * *', updateHourly
 # p = cron.scheduleJob '*/5 * * * * *', logger
 

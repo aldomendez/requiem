@@ -239,7 +239,7 @@
     return vm.bu['Engines']['Welder'].oee = average(_.pluck(urldt, 'OEE'));
   });
 
-  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_insert_Engines_LIV.json';
+  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_LIV.json';
 
   Vue.http.get(url, function(data, status, request) {
     var urldt;

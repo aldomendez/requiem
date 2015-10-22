@@ -9,12 +9,17 @@ $app->get('/new', 'new_index' );
 $app->get('/manual_input/:machine/:start', 'get_interval_info' );
 $app->get('/manualUpdate', 'manual_update' );
 $app->get('/bu/:bu', 'single_bu_score' );
+$app->get('/update/:query/:inicio/:final', 'updateByQuery');
 $app->get('/update/:target', 'updateTarget');
 $app->get('/get/:depto/:product/:process', 'returnOEEDataByProcess');
 $app->get('/update', 'updateMachineCatalog');
 
 $app->post('/manual_input', 'post_interval_info' );
 
+function updateByQuery($query,$inicio,$final)
+{
+    require './procedures/insert_based_on_query.php';
+}
 
 function index() {
     

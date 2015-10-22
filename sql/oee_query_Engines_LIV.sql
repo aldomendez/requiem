@@ -1,10 +1,8 @@
-insert into oee_master2 (ID,s_start_dt,s_end_dt,BU,DEPTO,PRODUCT,PROCESS,MACHINE,SAMPLE_TIME_SPAN,total_production_time,build_qty,AVG_CT, AVAIL, PERF, YIELD, oee)
-select rownum+(select max(id) from oee_master2) id,to_date(':inicio','yyyy-mm-dd hh24:mi') s_start_dt, to_date(':final','yyyy-mm-dd hh24:mi')
-s_end_dt, a.* , (availability * performance * yield) oee from ( 
+select rownum+(select max(id) from oee_master2) id,':inicio' s_start_dt, ':final' s_end_dt, a.* , (availability * performance * yield) oee from ( 
     -- Second level, group aggregates per machine
     select  
-        bu,depto, regexp_replace(listagg(product ,'.') within group (order by product),'([^.]+)(.\1)+','\1') product,
-        regexp_replace(listagg(process ,'.') within group (order by process),'([^.]+)(.\1)+','\1') process, system_id,
+        bu,depto, regexp_replace(listagg(product ,',') within group (order by product),'([^,]+)(,\1)+','\1') product,
+        regexp_replace(listagg(process ,',') within group (order by process),'([^,]+)(,\1)+','\1') process, system_id,
         round((to_date(':final','yyyy-mm-dd hh24:mi') - to_date(':inicio','yyyy-mm-dd hh24:mi'))*24*60,0) SAMPLE_TIME_SPAN,
         round(sum(total_production_time),0) total_production_time, sum(build_qty) build_qty, sum(avg_ct) avg_ct, 
         sum(total_production_time)/round((to_date(':final','yyyy-mm-dd hh24:mi') - to_date(':inicio','yyyy-mm-dd hh24:mi'))*24*60,0) availability
@@ -13,7 +11,7 @@ s_end_dt, a.* , (availability * performance * yield) oee from (
         -- First level, calculates values per code
         select bu_id bu,depto, 
               -- Deletes duplicates in the product list
-              regexp_replace(listagg(a.product ,'.') within group (order by a.product),'([^.]+)(.\1)+','\1') product, 
+              regexp_replace(listagg(a.product ,',') within group (order by a.product),'([^,]+)(,\1)+','\1') product, 
               process,display_name system_id,
               sum(cycle_time/60) total_production_time,
               count(serial_num) build_qty,

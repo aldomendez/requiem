@@ -1,3 +1,4 @@
+insert into oee_master2 (ID,s_start_dt,s_end_dt,BU,DEPTO,PRODUCT,PROCESS,MACHINE,SAMPLE_TIME_SPAN,total_production_time,build_qty,AVG_CT, AVAIL, PERF, YIELD, oee)
 select rownum+(select max(id) from oee_master2) id,to_date(':inicio','yyyy-mm-dd hh24:mi') s_start_dt, to_date(':final','yyyy-mm-dd hh24:mi')
 s_end_dt, a.* , (availability * performance * yield) oee from ( 
     -- Second level, group aggregates per machine
@@ -22,14 +23,15 @@ s_end_dt, a.* , (availability * performance * yield) oee from (
               sum(case when PASS_FAIL = 'P' then 1 else 0 end) good_pieces
         from (
             select system_id, serial_num, pass_fail, process_date,
-            part_num, (completion_date - process_date)*24*60*60 cycle_time, step_name from phase2.PROCESS_EXECUTION@mxoptix edb 
+            part_num, cycle_time, step_name from phase2.los_assembly@mxoptix edb 
             where process_date between 
               to_date(':inicio','yyyy-mm-dd hh24:mi') and 
               to_date(':final','yyyy-mm-dd hh24:mi') and 
-              system_id in ('BR-PMQPSK-DCMT1','BR-PMQPSK-DCMT2','BR-PMQPSK-DCMT3')
+              system_id in ('CYBOND1','CYBOND11','CYBOND15','CYBOND18','CYBOND19','CYBOND20','CYBOND24','CYBOND28','CYBOND29','CYBOND9','CYBOND31','CYBOND32','CYBOND35','CYBOND36','CYBOND37')
           )a left join apogee.oee_machine_catalog b on system_id=machine
           -- this part split by product and assign its corresponging machine specific data
-          where case when a.part_num in (select product from oee_machine_catalog where process = 'DC test' group by product) then a.part_num else 'all' end  = b.product
+          where case when a.part_num in (select product from oee_machine_catalog where depto = 'OSAS' group by product) then a.part_num else 'all' end  = b.product and
+          depto = 'OSAS'
         group by system_id, bu_id, depto, process, display_name,ideal_cycle_time
 
     )b group by bu,depto, system_id

@@ -14,10 +14,10 @@
 			,array('oee_query_pmqpsk_dctest',8)
 			,array('oee_query_pmqpsk_plctest',4)
 			,array('oee_query_uITLA_LENS',4)
-			// ,array('oee_query_uITLA_ETALON',4)
-			// ,array('oee_query_uITLA_DEFLECTOR',4)
+			// ,array('oee_query_uITLA_ETALON',4) // Retired because are not reliable given
+			// ,array('oee_query_uITLA_DEFLECTOR',4) // the nature of the process
 			,array('oee_query_LR4-pack_Screening',4)
-			,array('oee_insert_Engines_LIV',4)
+			,array('oee_query_Engines_LIV',4)
 			,array('oee_query_Engines_10Gb_25Gb',4)
 		);
 		$ans = array();
@@ -52,7 +52,20 @@
 		echo json_encode($ans);
 	} elseif ($target == 'four_ours') {
 		// Only insert data every four hours
-		$files = array('oee_insert_SiLens_every_x_h');
+		$files = array(
+			'oee_insert_SiLens_every_x_h'
+			,'oee_insert_LR4-OSA_LIV'
+			,'oee_insert_Engines_Functional'
+			,'oee_insert_Engines_Welder'
+			,'oee_insert_pmqpsk_dctest'
+			,'oee_insert_pmqpsk_plctest'
+			,'oee_insert_uITLA_LENS'
+			// ,'oee_insert_uITLA_ETALON' // Retired because are not reliable given
+			// ,'oee_insert_uITLA_DEFLECTOR' // the nature of the process
+			,'oee_insert_LR4-pack_Screening'
+			,'oee_insert_Engines_LIV'
+			,'oee_insert_Engines_10Gb_25Gb'
+		);
 		$inicio = strtotime('-4 hours');
 		$final = strtotime('now');
 		// echo('Query for dates:' . date('Y-m-d H:i', $inicio) . "  >".  date('Y-m-d H:i', $final));
@@ -63,10 +76,12 @@
 			$DB->setQuery($query);
 			$DB->bind_vars(':inicio',date('Y-m-d H:i', $inicio));
 			$DB->bind_vars(':final',date('Y-m-d H:i', $final));
+			file_put_contents("sql/preCompiled/".$value.".sql", $DB->query);
+			echo "Active : " . $value . PHP_EOL;
 			if (oci_execute($DB->statement)){
-				echo "Success";
+				echo "Success : " . $value . PHP_EOL;
 			} else {
-				echo "Fail";
+				echo "Fail" . PHP_EOL;
 			}
 
 			

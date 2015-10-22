@@ -57,7 +57,7 @@
     return vm.bu['Engines']['Welder'].oee = average(_.pluck(urldt, 'OEE'));
   });
 
-  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_insert_Engines_LIV.json';
+  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_LIV.json';
 
   Vue.http.get(url, function(data, status, request) {
     var urldt;
@@ -69,11 +69,29 @@
     return vm.bu['Engines']['LIV'].oee = average(_.pluck(urldt, 'OEE'));
   });
 
+  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_Engines_10Gb_25Gb.json';
+
+  Vue.http.get(url, function(data, status, request) {
+    var urldt;
+    urldt = data;
+    vm.bu['Engines']['OSAS'].raw = data;
+    vm.bu['Engines']['OSAS'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
+    vm.bu['Engines']['OSAS'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
+    vm.bu['Engines']['OSAS'].yiel = average(_.pluck(urldt, 'YIELD'));
+    return vm.bu['Engines']['OSAS'].oee = average(_.pluck(urldt, 'OEE'));
+  });
+
   window.vm = new Vue({
     el: '#template',
     data: {
       bu: {
         'Engines': {
+          'OSAS': {
+            avail: 0,
+            perf: 0,
+            yiel: 0,
+            oee: 0
+          },
           'Welder': {
             avail: 0,
             perf: 0,

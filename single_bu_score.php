@@ -7,10 +7,10 @@
   <link rel="stylesheet" type="text/css"  href="http://wmatvmlr401/lr4/jsLib/SemanticUi/2.0.7/semantic.css">
 </head>
 <body>
-  <div class="ui one column grid container" id="container">
+  <div class="ui equal width grid container" id="container">
     <template id="template">
-      <div class="one column row">
-        <div class="column">
+      <!-- <div class="one column row"> -->
+        <div class="sixteen wide column">
           <div class="ui menu">
             <a class="active item" href="http://wmatvmlr401/lr4/">
               Avago 
@@ -20,8 +20,10 @@
             </a>
           </div>
         </div>
-      </div>
-        <div class="column" v-repeat="bu">
+      <!-- </div> -->
+
+      <!-- <div class="one column row"> -->
+        <div class="sixteen wide column" v-repeat="bu">
           <h1 class="ui center aligned header">{{$key}}</h1>
           <table class="ui yellow table">
             <tr v-repeat="$data">
@@ -69,9 +71,7 @@
             </tr>
           </table>
         </div>
-
-
-
+      <!-- </div> -->
     </template>
   </div>
   <script src="http://wmatvmlr401/lr4/jsLib/underscore/1.8.3/underscore.js"></script>

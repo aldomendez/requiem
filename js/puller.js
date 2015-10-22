@@ -1,5 +1,5 @@
 (function() {
-  var SERVICEPARAMETERS, _, analitics, callRest, checksum, counter, cron, emailjs, fs, j, logger, mailTest, o, rest, running, server, testService, timeoutTime, updateEveryFourHours, updateHourly, writeFile;
+  var SERVICEPARAMETERS, _, analitics, callRest, checksum, counter, cron, dateFormat, emailjs, fs, j, logger, mailTest, o, rest, running, server, testService, timeoutTime, updateEveryFourHours, updateHourly, writeFile;
 
   rest = require('unirest');
 
@@ -13,7 +13,11 @@
 
   analitics = require('./analitics');
 
+  dateFormat = require('dateformat');
+
   _ = require('underscore');
+
+  console.log("Awaken: " + dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss TT"));
 
   SERVICEPARAMETERS = {
     user: process.env['notificationUser'],
@@ -52,6 +56,7 @@
 
   callRest = function(addr, callback) {
     running = true;
+    console.log("Calling home: " + dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss TT"));
     console.log('--> Making the question');
     return rest.get(addr).end(function(response) {
       var cs;
@@ -121,7 +126,17 @@
   Scheduler
    */
 
-  j = cron.scheduleJob('0 30 6,10,14,22,2  * * *', updateEveryFourHours);
+  j = cron.scheduleJob('0 30 6  * * *', updateEveryFourHours);
+
+  j = cron.scheduleJob('0 30 10  * * *', updateEveryFourHours);
+
+  j = cron.scheduleJob('0 30 14  * * *', updateEveryFourHours);
+
+  j = cron.scheduleJob('0 30 18  * * *', updateEveryFourHours);
+
+  j = cron.scheduleJob('0 30 22  * * *', updateEveryFourHours);
+
+  j = cron.scheduleJob('0 30 2  * * *', updateEveryFourHours);
 
   o = cron.scheduleJob('0 0 * * * *', updateHourly);
 
