@@ -13,18 +13,19 @@ echo $inicio,PHP_EOL, $final, PHP_EOL ;
 
 // Only insert data every four hours
 $files = array(
-	'oee_insert_SiLens_every_x_h'
-	,'oee_insert_LR4-OSA_LIV'
-	,'oee_insert_Engines_Functional'
-	,'oee_insert_Engines_Welder'
-	,'oee_insert_pmqpsk_dctest'
-	,'oee_insert_pmqpsk_plctest'
-	,'oee_insert_uITLA_LENS'
+	'oee_insert_uITLA_PRE-POST-PURGE'
+	// ,'oee_insert_SiLens_every_x_h'
+	// ,'oee_insert_LR4-OSA_LIV'
+	// ,'oee_insert_Engines_Functional'
+	// ,'oee_insert_Engines_Welder'
+	// ,'oee_insert_pmqpsk_dctest'
+	// ,'oee_insert_pmqpsk_plctest'
+	// ,'oee_insert_uITLA_LENS'
 	// ,'oee_insert_uITLA_ETALON' // Retired because are not reliable given
 	// ,'oee_insert_uITLA_DEFLECTOR' // the nature of the process
-	,'oee_insert_LR4-pack_Screening'
-	,'oee_insert_Engines_LIV'
-	,'oee_insert_Engines_10Gb_25Gb'
+	// ,'oee_insert_LR4-pack_Screening'
+	// ,'oee_insert_Engines_LIV'
+	// ,'oee_insert_Engines_10Gb_25Gb'
 );
 // $inicio = strtotime('-4 hours');
 // $final = strtotime('now');

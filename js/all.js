@@ -89,7 +89,7 @@
             yiel: 0,
             oee: 0
           },
-          'Lens Assy': {
+          'Pre-Post Purge': {
             raw: [],
             avail: 0,
             perf: 0,
@@ -275,16 +275,16 @@
     return vm.bu['PMQPSK']['PLC Test'].oee = average(_.pluck(urldt, 'OEE'));
   });
 
-  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_uITLA_LENS.json';
+  url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_uITLA_PRE-POST-PURGE.json';
 
   Vue.http.get(url, function(data, status, request) {
     var urldt;
     urldt = data;
-    vm.bu['µITLA']['Lens Assy'].raw = data;
-    vm.bu['µITLA']['Lens Assy'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
-    vm.bu['µITLA']['Lens Assy'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
-    vm.bu['µITLA']['Lens Assy'].yiel = average(_.pluck(urldt, 'YIELD'));
-    return vm.bu['µITLA']['Lens Assy'].oee = average(_.pluck(urldt, 'OEE'));
+    vm.bu['µITLA']['Pre-Post Purge'].raw = data;
+    vm.bu['µITLA']['Pre-Post Purge'].avail = average(_.pluck(urldt, 'AVAILABILITY'));
+    vm.bu['µITLA']['Pre-Post Purge'].perf = average(_.pluck(urldt, 'PERFORMANCE'));
+    vm.bu['µITLA']['Pre-Post Purge'].yiel = average(_.pluck(urldt, 'YIELD'));
+    return vm.bu['µITLA']['Pre-Post Purge'].oee = average(_.pluck(urldt, 'OEE'));
   });
 
   url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_uITLA_ETALON.json';

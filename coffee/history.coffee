@@ -58,7 +58,7 @@ updateDatabase = (inicio, final, callback)->
 	callRest "http://wmatvmlr401/lr4/oee-monitor/index.php/update/all/#{inicio}/#{final}", callback
 
 options = {
-	currentDate: new Date(2015,0,1)
+	currentDate: new Date(2015,9,1)
 	endDate: new Date()
 	iterator:true
 }

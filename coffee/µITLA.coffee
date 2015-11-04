@@ -10,14 +10,14 @@ Vue.filter 'color', (val)->
 	if .9 <= val <= 1 then return 'green'
 
 
-url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_uITLA_LENS.json'
+url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_uITLA_PRE-POST-PURGE.json'
 Vue.http.get url, (data, status, request)->
 	urldt = data
-	vm.bu['µITLA']['Lens Assy'].raw = data
-	vm.bu['µITLA']['Lens Assy'].avail = average(_.pluck(urldt,'AVAILABILITY'))
-	vm.bu['µITLA']['Lens Assy'].perf = average(_.pluck(urldt,'PERFORMANCE'))
-	vm.bu['µITLA']['Lens Assy'].yiel = average(_.pluck(urldt,'YIELD'))
-	vm.bu['µITLA']['Lens Assy'].oee = average(_.pluck(urldt,'OEE'))
+	vm.bu['µITLA']['Pre-Post Purge'].raw = data
+	vm.bu['µITLA']['Pre-Post Purge'].avail = average(_.pluck(urldt,'AVAILABILITY'))
+	vm.bu['µITLA']['Pre-Post Purge'].perf = average(_.pluck(urldt,'PERFORMANCE'))
+	vm.bu['µITLA']['Pre-Post Purge'].yiel = average(_.pluck(urldt,'YIELD'))
+	vm.bu['µITLA']['Pre-Post Purge'].oee = average(_.pluck(urldt,'OEE'))
 
 url = 'http://wmatvmlr401/lr4/oee-monitor/cache/oee_query_uITLA_ETALON.json'
 Vue.http.get url, (data, status, request)->
@@ -49,7 +49,7 @@ window.vm = new Vue {
 				'Deflector':{
 					avail:0,perf:0,yiel:0,oee:0
 				}
-				'Lens Assy':{
+				'Pre-Post Purge':{
 					avail:0,perf:0,yiel:0,oee:0
 				}
 			}

@@ -72,7 +72,7 @@
   };
 
   options = {
-    currentDate: new Date(2015, 0, 1),
+    currentDate: new Date(2015, 9, 1),
     endDate: new Date(),
     iterator: true
   };

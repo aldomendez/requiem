@@ -13,11 +13,12 @@
 			,array('oee_query_Engines_Welder',4)
 			,array('oee_query_pmqpsk_dctest',8)
 			,array('oee_query_pmqpsk_plctest',4)
-			,array('oee_query_uITLA_LENS',4)
+			// ,array('oee_query_uITLA_LENS',4)
 			// ,array('oee_query_uITLA_ETALON',4) // Retired because are not reliable given
 			// ,array('oee_query_uITLA_DEFLECTOR',4) // the nature of the process
 			,array('oee_query_LR4-pack_Screening',4)
 			,array('oee_query_Engines_LIV',4)
+			,array('oee_query_uITLA_PRE-POST-PURGE',4)
 			,array('oee_query_Engines_10Gb_25Gb',4)
 		);
 		$ans = array();
@@ -64,6 +65,7 @@
 			// ,'oee_insert_uITLA_DEFLECTOR' // the nature of the process
 			,'oee_insert_LR4-pack_Screening'
 			,'oee_insert_Engines_LIV'
+			,'oee_query_uITLA_PRE-POST-PURGE'
 			,'oee_insert_Engines_10Gb_25Gb'
 		);
 		$inicio = strtotime('-4 hours');
